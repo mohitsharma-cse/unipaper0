@@ -1,4 +1,4 @@
-﻿* {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -263,7 +263,7 @@ body {
     height: 58.5%;
     /* Adjusts the HEIGHT of the monitor screen */
 
-    background-color: #000; /* Solid black for mobile layering */
+    background-color: rgba(10, 10, 10, 0.4); /* Semi-transparent base */
     background-image: 
         linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
@@ -2488,13 +2488,17 @@ body {
 /* ---------- SMALL MOBILE: max-width 480px ---------- */
 @media (max-width: 480px) {
     /* Mobile-specific content styling */
+    .crt-screen {
+        background-color: rgba(0, 0, 0, 0.3) !important; /* Very transparent on mobile */
+        backdrop-filter: blur(1px); /* Slight blur for professional look */
+    }
     .glitched-text {
         color: #ffcc00;
         font-family: 'Press Start 2P', cursive;
         font-size: 8px !important;
         line-height: 1.5;
         display: block;
-        text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        text-shadow: 2px 2px 4px rgba(0,0,0,1); /* Stronger shadow */
     }
     .main-title { display: none !important; } /* Hide title on mobile to match screenshot */
     .subtitle { 
