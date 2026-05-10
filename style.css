@@ -2755,7 +2755,7 @@ body {
 
     /* Mobile-specific content styling */
     .crt-screen {
-        background-color: rgba(0, 0, 0, 0.3) !important;
+        background-color: #000 !important;
         /* Very transparent on mobile */
         backdrop-filter: blur(1px);
         /* Slight blur for professional look */
