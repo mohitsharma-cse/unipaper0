@@ -2288,22 +2288,24 @@ body {
     .join-btn { padding: 6px 12px; font-size: 12px; }
     .icon-btn { font-size: 14px; }
 
-    /* HERO: Make the monitor + desk fill the mobile screen properly */
+    /* HERO: Make the monitor perfectly centered and huge on mobile */
     .hero-section {
-        height: auto !important;
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 100vw !important; /* Force aspect ratio container height */
+        min-height: auto !important;
+        position: relative;
+        overflow: hidden;
+        padding: 0 !important;
+        background: #000 !important;
+        display: block !important;
     }
 
     .desk-container {
-        width: 180vw !important;
+        width: 195vw !important; /* Zoom in */
         height: auto !important;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -46%) !important; /* Perfect center for CRT */
     }
 
     /* CRT screen: make content bigger on mobile */
@@ -2318,7 +2320,7 @@ body {
 
     /* CRT TEXT SIZES: big enough to read on phone */
     .monitor-greeting {
-        font-size: 7px !important;
+        font-size: 10px !important;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
     }
@@ -2470,23 +2472,28 @@ body {
     .nav-right { gap: 8px; }
 
     /* Hero: zoom the desk even more to show the monitor bigger */
+    .hero-section {
+        height: 135vw !important;
+    }
     .desk-container {
-        width: 220vw !important;
+        width: 250vw !important;
+        transform: translate(-50%, -46.5%) !important;
     }
 
-    .monitor-greeting { font-size: 6px !important; margin-bottom: 4px; }
-    .main-title { font-size: clamp(12px, 3.5vw, 18px) !important; }
-    .subtitle { font-size: clamp(8px, 2vw, 11px) !important; margin-bottom: 8px; }
+    .monitor-greeting { font-size: 8px !important; margin-bottom: 4px; }
+    .main-title { font-size: clamp(16px, 4.5vw, 22px) !important; line-height: 1.1 !important; margin-bottom: 6px;}
+    .subtitle { font-size: clamp(10px, 2.5vw, 13px) !important; margin-bottom: 8px; }
 
-    .monitor-tag { font-size: 7px; padding: 3px 6px; }
+    .monitor-tag { font-size: 9px; padding: 4px 8px; }
     .tags-container { gap: 3px; }
 
     .input__container { padding: 6px; gap: 6px; }
     .input__search { font-size: 11px; padding: 6px; }
     .input__container::before { font-size: 6px; }
 
-    .stats-container { grid-template-columns: 1fr; gap: 20px; }
-    .stat-number { font-size: 20px; }
+    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .stat-number { font-size: 28px; }
+    .stat-label { font-size: 12px; }
 
     .subject-card { padding: 18px; }
     .sc-name { font-size: 22px; }
