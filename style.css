@@ -2311,14 +2311,13 @@ body {
     }
 
     .desk-container {
-        width: 100vw !important; /* Cap width to screen width */
+        width: 155vw !important; /* Zoom in so phone fills width */
         height: auto !important;
         aspect-ratio: 853 / 1844 !important;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important; 
-        margin: 0 auto;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
     }
 
     /* CRT screen: Perfectly map to the phone screen in mobile-bg.png */
@@ -2492,15 +2491,7 @@ body {
     .avatar { display: none; }
     .nav-right { gap: 8px; }
 
-    /* Hero: Fit the tall phone image */
-    .hero-section {
-        height: calc(100vh - 60px) !important;
-    }
-    .desk-container {
-        width: auto !important;
-        height: 100% !important;
-        transform: none !important;
-    }
+
 
     /* Map exact coords from the image analysis */
     .crt-screen {
