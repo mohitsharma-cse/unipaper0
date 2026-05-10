@@ -1,4 +1,4 @@
-﻿* {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -253,10 +253,10 @@ body {
 */
 .crt-screen {
     position: absolute;
-    top: 10.3%;
-    left: 19.5%;
-    width: 62%;
-    height: 58.5%;
+    top: 13%;
+    left: 21.5%;
+    width: 58%;
+    height: 54%;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
