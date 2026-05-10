@@ -263,10 +263,8 @@ body {
     /* Adjusts the HEIGHT of the monitor screen */
 
     background-color: rgba(10, 10, 10, 0.1); /* Semi-transparent base */
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.01) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.01) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: none;
+    
     
     border-radius: 20px;
     overflow: hidden;
