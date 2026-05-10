@@ -254,23 +254,20 @@ body {
 .crt-screen {
     position: absolute;
     top: 10.3%;
-    /* Adjusts the vertical position of the monitor screen */
     left: 19.5%;
-    /* Adjusts the horizontal position of the monitor screen */
     width: 62%;
-    /* Adjusts the WIDTH of the monitor screen */
     height: 58.5%;
-    /* Adjusts the HEIGHT of the monitor screen */
-
-    background-color: transparent; /* Semi-transparent base */
-    background-image: none;
-    
-    
-    border-radius: 0;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    
-    box-shadow: none;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
 }
 .monitor-content {
     position: relative;
@@ -1467,20 +1464,23 @@ body {
 }
 
     .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -1723,20 +1723,23 @@ body {
 
 /* Re-enable mouse events on CRT screen */
     .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -2538,20 +2541,23 @@ body {
 
     /* CRT screen: Perfectly map to the phone screen in mobile-bg.png */
         .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -2877,20 +2883,23 @@ body {
 /* ---------- SMALL MOBILE: max-width 480px ---------- */
 @media (max-width: 480px) {
         .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -2949,20 +2958,23 @@ body {
 
     /* Mobile-specific content styling */
         .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -3085,20 +3097,23 @@ body {
 
     /* Map exact coords from the image analysis */
         .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
@@ -3331,20 +3346,23 @@ body {
 
 @media (max-width: 480px) {
         .crt-screen {
-        top: 10% !important;      /* Starts at the top of the phone screen */
-        left: 21% !important;     /* Centers it perfectly inside the case */
-        width: 58.5% !important;  /* Fills the full width of the screen area */
-        height: 79% !important;   /* Fills the full height of the screen area */
-        border-radius: 12px 12px 35px 35px !important;
-        z-index: 100 !important;   /* Ensures it is on the upper layer */
-        background-color: #000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
+    position: absolute;
+    top: 10.3%;
+    left: 19.5%;
+    width: 62%;
+    height: 58.5%;
+    background-color: rgba(10, 10, 10, 0.6);
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 
+        inset 0 0 100px rgba(0,0,0,0.9),
+        0 0 20px rgba(255, 204, 0, 0.15);
+}
     
     .monitor-content {
         width: 100% !important;
