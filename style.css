@@ -1,4 +1,4 @@
-* {
+﻿* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body {
     overflow-y: auto;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â NAVBAR Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -200,7 +200,7 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â• HERO SCENE (THE PERFECT SCALE ARCHITECTURE) â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â HERO SCENE (THE PERFECT SCALE ARCHITECTURE) Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .main-content {
     margin-top: 60px;
     /* Offset fixed navbar */
@@ -224,6 +224,7 @@ body {
 }
 
 .bg-layer {
+    /* injected */
     width: 100%;
     height: 100%;
     display: block;
@@ -247,7 +248,7 @@ body {
 
 /* 
 =========================================================
-👇 EDIT THIS PROPERTY TO CHANGE THE BLACK MONITOR SIZE 👇
+ðŸ‘‡ EDIT THIS PROPERTY TO CHANGE THE BLACK MONITOR SIZE ðŸ‘‡
 =========================================================
 */
 .crt-screen {
@@ -281,7 +282,7 @@ body {
 
 /* 
 =========================================================
-👆 EDIT THIS PROPERTY TO CHANGE THE BLACK MONITOR SIZE 👆
+ðŸ‘† EDIT THIS PROPERTY TO CHANGE THE BLACK MONITOR SIZE ðŸ‘†
 =========================================================
 */
 
@@ -322,7 +323,7 @@ body {
     }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â• MONITOR CONTENT â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â MONITOR CONTENT Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .monitor-content {
     position: relative;
     z-index: 10;
@@ -510,7 +511,7 @@ body {
 }
 
 
-/* ════════════ NEW: RETRO SCROLLING SECTIONS ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• NEW: RETRO SCROLLING SECTIONS â•â•â•â•â•â•â•â•â•â•â•â• */
 .content-section {
     padding: 100px 20px;
     background: #0d0d0f;
@@ -549,7 +550,7 @@ body {
     color: #ffcc00;
 }
 
-/* ════════════ GENERAL BUTTONS ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• GENERAL BUTTONS â•â•â•â•â•â•â•â•â•â•â•â• */
 .btn {
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
@@ -581,7 +582,7 @@ body {
     border-color: #ffcc00;
 }
 
-/* ════════════ STATS BAR ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• STATS BAR â•â•â•â•â•â•â•â•â•â•â•â• */
 .stats-bar {
     background: #111;
     padding: 60px 20px;
@@ -741,7 +742,7 @@ body {
     }
 }
 
-/* ════════════ SUBJECTS GRID ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• SUBJECTS GRID â•â•â•â•â•â•â•â•â•â•â•â• */
 .subjects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -1025,7 +1026,7 @@ body {
     }
 }
 
-/* ════════════ HOW IT WORKS ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• HOW IT WORKS â•â•â•â•â•â•â•â•â•â•â•â• */
 .how-it-works {
     background-color: #121216;
 }
@@ -1083,7 +1084,7 @@ body {
     }
 }
 
-/* ════════════ UPLOAD CTA ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• UPLOAD CTA â•â•â•â•â•â•â•â•â•â•â•â• */
 .upload-inner {
     text-align: center;
     background: linear-gradient(180deg, #1a1a1f 0%, #111 100%);
@@ -1103,7 +1104,7 @@ body {
     font-size: 18px;
 }
 
-/* ════════════ REVIEWS SECTION ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• REVIEWS SECTION â•â•â•â•â•â•â•â•â•â•â•â• */
 .reviews-section {
     background: #060608;
     overflow: hidden;
@@ -1225,7 +1226,7 @@ body {
     gap: 20px;
 }
 
-/* ════════════ FOOTER ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â•â•â• */
 .footer {
     display: flex;
     justify-content: space-between;
@@ -1258,7 +1259,7 @@ body {
     color: #fff;
 }
 
-/* ════════════ CLICK SPARKS ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• CLICK SPARKS â•â•â•â•â•â•â•â•â•â•â•â• */
 .click-spark-canvas {
     position: fixed;
     top: 0;
@@ -1569,7 +1570,7 @@ body {
     box-shadow: 3px 3px 0 rgba(255, 204, 0, 0.5), 0 0 16px rgba(255, 204, 0, 0.15) !important;
 }
 
-/* Tags � retro yellow on hover */
+/* Tags ï¿½ retro yellow on hover */
 .tag {
     cursor: pointer;
     transition: background 0.15s, color 0.15s, transform 0.1s;
@@ -1774,7 +1775,7 @@ body {
 
 
 /* -------------------------------------------------------
-   MODAL FIX � Hide modals by default, show with .is-active
+   MODAL FIX ï¿½ Hide modals by default, show with .is-active
    ------------------------------------------------------- */
 .modal-overlay {
     display: none;
@@ -2288,29 +2289,47 @@ body {
     .join-btn { padding: 6px 12px; font-size: 12px; }
     .icon-btn { font-size: 14px; }
 
-    /* HERO: Make the monitor perfectly centered and huge on mobile */
+    /* HERO: Hand-holding-phone new background image layout */
     .hero-section {
-        height: 100vw !important; /* Force aspect ratio container height */
+        height: calc(100vh - 60px) !important;
         min-height: auto !important;
         position: relative;
         overflow: hidden;
         padding: 0 !important;
         background: #000 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .desktop-bg {
+        display: none !important;
+    }
+    
+    .mobile-bg {
         display: block !important;
     }
 
     .desk-container {
-        width: 195vw !important; /* Zoom in */
+        width: 100vw !important; /* Cap width to screen width */
         height: auto !important;
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -46%) !important; /* Perfect center for CRT */
+        aspect-ratio: 853 / 1844 !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important; 
+        margin: 0 auto;
     }
 
-    /* CRT screen: make content bigger on mobile */
+    /* CRT screen: Perfectly map to the phone screen in mobile-bg.png */
     .crt-screen {
-        padding: 10px;
+        padding: 15px 10px;
+        top: 26.5% !important; /* Adjusted perfectly to fit inside the phone screen */
+        left: 28.5% !important;
+        width: 44.5% !important;
+        height: 38% !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
     }
 
     .monitor-content {
@@ -2471,20 +2490,30 @@ body {
     .avatar { display: none; }
     .nav-right { gap: 8px; }
 
-    /* Hero: zoom the desk even more to show the monitor bigger */
+    /* Hero: Fit the tall phone image */
     .hero-section {
-        height: 135vw !important;
+        height: calc(100vh - 60px) !important;
     }
     .desk-container {
-        width: 250vw !important;
-        transform: translate(-50%, -46.5%) !important;
+        width: auto !important;
+        height: 100% !important;
+        transform: none !important;
     }
 
-    .monitor-greeting { font-size: 8px !important; margin-bottom: 4px; }
-    .main-title { font-size: clamp(16px, 4.5vw, 22px) !important; line-height: 1.1 !important; margin-bottom: 6px;}
-    .subtitle { font-size: clamp(10px, 2.5vw, 13px) !important; margin-bottom: 8px; }
+    /* Map exact coords from the image analysis */
+    .crt-screen {
+        top: 26.1% !important;
+        left: 28% !important;
+        width: 45.2% !important;
+        height: 38.5% !important;
+        border-radius: 14px !important;
+    }
 
-    .monitor-tag { font-size: 9px; padding: 4px 8px; }
+    .monitor-greeting { font-size: 5px !important; margin-bottom: 4px; }
+    .main-title { font-size: clamp(10px, 3.5vw, 16px) !important; line-height: 1.1 !important; margin-bottom: 6px;}
+    .subtitle { font-size: clamp(7px, 2vw, 10px) !important; margin-bottom: 8px; }
+
+    .monitor-tag { font-size: 6px; padding: 3px 5px; }
     .tags-container { gap: 3px; }
 
     .input__container { padding: 6px; gap: 6px; }
@@ -2517,7 +2546,7 @@ body {
     .library-card-action { font-size: 8px; padding: 8px 6px; }
 }
 
-/* ════════════ REVIEWS STAGE TOP MARGIN ════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â• REVIEWS STAGE TOP MARGIN â•â•â•â•â•â•â•â•â•â•â•â• */
 .reviews-stage { margin-top: 60px; }
 
 /* ================================================================
@@ -2586,3 +2615,6 @@ body {
         font-size: 20px;
     }
 }
+
+.mobile-bg { display: none; }
+
