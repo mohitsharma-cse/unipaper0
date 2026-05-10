@@ -262,17 +262,15 @@ body {
     height: 58.5%;
     /* Adjusts the HEIGHT of the monitor screen */
 
-    background-color: rgba(10, 10, 10, 0.1); /* Semi-transparent base */
+    background-color: transparent; /* Semi-transparent base */
     background-image: none;
     
     
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     z-index: 5;
     
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.8),
-        0 0 20px rgba(255, 204, 0, 0.1);
+    box-shadow: none;
 }
 .monitor-content {
     position: relative;
