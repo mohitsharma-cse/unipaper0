@@ -381,11 +381,11 @@ body {
 
 .subtitle {
     font-family: 'Inter', sans-serif;
-    color: #a1a1aa;
-    font-size: clamp(14px, 1.3vw, 20px);
-    line-height: 1.6;
-    margin-bottom: 30px;
-    max-width: 80%;
+    color: #fef08a;
+    font-size: 0.75vw;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    max-width: 90%;
 }
 
 .highlight-text {
@@ -811,25 +811,14 @@ body {
     display: block !important;
 }
 
+
 @media (max-width: 768px) {
-    .mobile-only {
-        display: block !important;
-    }
-    .desktop-only {
-        display: none !important;
-    }
+    .mobile-only { display: block !important; }
+    .desktop-only { display: none !important; }
+    .desktop-bg { display: none !important; }
+    .mobile-bg { display: block !important; }
     
-    /* Toggle Background Images */
-    .desktop-bg {
-        display: none !important;
-    }
-    .mobile-bg {
-        display: block !important;
-    }
-    
-    .hero-section {
-        background: #000 !important;
-    }
+    .hero-section { background: #000 !important; }
     
     .desk-container {
         aspect-ratio: 1 / 1.5 !important; 
@@ -843,7 +832,7 @@ body {
 
     .crt-screen {
         padding: 10px !important;
-        top: 25.5% !important; /* Adjusted for mobile-bg.png monitor area */
+        top: 25.5% !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         width: 72% !important;
@@ -864,23 +853,19 @@ body {
         padding-top: 5px !important;
     }
     
-    .glitched-text {
-        font-size: 6px !important;
-    }
-
     .main-title {
-        font-size: 8px !important;
+        font-size: 9px !important; /* Scaled for mobile */
         margin-bottom: 5px !important;
     }
     
     .subtitle {
-        font-size: 7px !important;
+        font-size: 8px !important; /* Scaled for mobile */
         margin-bottom: 8px !important;
         line-height: 1.2 !important;
     }
     
     .pixel-input {
-        font-size: 11px !important;
+        font-size: 14px !important; /* Larger for typing readability */
         padding: 8px !important;
         width: 100% !important;
     }
@@ -891,20 +876,8 @@ body {
         padding: 10px !important;
     }
     
-    .tags-row {
-        gap: 4px !important;
-        margin-top: 5px !important;
-    }
-    
     .tag {
         font-size: 6px !important;
         padding: 3px 5px !important;
     }
-}
-
-/* ---------- TABLET: max-width 900px ---------- */
-@media (max-width: 900px) {
-    .steps-grid { grid-template-columns: 1fr; }
-    .stats-container { grid-template-columns: repeat(2, 1fr); }
-    .footer { flex-direction: column; text-align: center; height: auto; padding: 20px; }
 }
