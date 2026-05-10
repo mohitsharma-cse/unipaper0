@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unipaper Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+    <nav class="navbar" data-spark-color="#ffcc00">
+        <div class="nav-left">
+            <a href="/" class="logo">
+                <span class="logo-icon-box">U</span>
+                <span class="logo-text">Unipaper</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a class="join-btn" href="/">Public Site</a>
+            <button class="join-btn admin-hidden" id="admin-logout-btn" type="button">Logout</button>
+        </div>
+    </nav>
+
+    <main class="admin-main">
+        <div class="admin-shell">
+            <section class="admin-hero">
+                <div>
+                    <p class="admin-kicker">ADMIN CONTROL ROOM</p>
+                    <h1>Manage Library Files</h1>
+                    <p>Login with your Unipaper admin account, create folder structure, upload PDFs, control admin powers, delete old material, and approve student reviews.</p>
+                </div>
+            </section>
+
+            <div class="admin-status" id="admin-status">Backend: checking connection...</div>
+
+            <section class="admin-panel admin-login-card" id="login-panel">
+                <h2>Admin Login</h2>
+                <form id="admin-login-form" class="admin-form-grid">
+                    <div class="admin-field full">
+                        <label for="admin-email">Email</label>
+                        <input class="admin-input" id="admin-email" type="email" placeholder="admin@unipaper.local" autocomplete="email" required>
+                    </div>
+                    <div class="admin-field full">
+                        <label for="admin-password">Password</label>
+                        <input class="admin-input" id="admin-password" type="password" autocomplete="current-password" required>
+                    </div>
+                    <div class="admin-actions full">
+                        <button class="btn btn-yellow" type="submit">LOGIN <span>&gt;</span></button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="admin-dashboard" class="admin-hidden">
+                <div class="admin-stats-grid" id="admin-stats-grid" data-permission-section="dashboard:read">
+                    <div class="admin-stat-card"><strong>0</strong><span>Files</span></div>
+                    <div class="admin-stat-card"><strong>0</strong><span>Folders</span></div>
+                    <div class="admin-stat-card"><strong>0</strong><span>Downloads</span></div>
+                    <div class="admin-stat-card"><strong>0</strong><span>This Month</span></div>
+                </div>
+
+                <section class="admin-panel admin-ops-panel" data-permission-section="dashboard:read">
+                    <div class="admin-list-item-head">
+                        <div>
+                            <h2>Control Panel Must-Haves</h2>
+                            <p class="admin-panel-note">Real projects need more than upload buttons. This monitor shows the core systems Unipaper should keep under admin control.</p>
+                        </div>
+                        <span class="admin-role-badge">ROADMAP</span>
+                    </div>
+                    <div class="admin-command-grid">
+                        <article><i class="fa-solid fa-users-gear"></i><strong>Team Powers</strong><span>Live</span></article>
+                        <article><i class="fa-solid fa-folder-tree"></i><strong>Folder System</strong><span>Live</span></article>
+                        <article><i class="fa-solid fa-file-arrow-up"></i><strong>PDF Pipeline</strong><span>Live</span></article>
+                        <article><i class="fa-solid fa-comments"></i><strong>Review Queue</strong><span>Live</span></article>
+                        <article><i class="fa-solid fa-clipboard-list"></i><strong>Audit Logs</strong><span>Ready</span></article>
+                        <article><i class="fa-solid fa-chart-line"></i><strong>Analytics</strong><span>Next</span></article>
+                        <article><i class="fa-solid fa-box-archive"></i><strong>Backups</strong><span>Next</span></article>
+                        <article><i class="fa-solid fa-shield-halved"></i><strong>Security</strong><span>Ongoing</span></article>
+                        <article><i class="fa-solid fa-triangle-exclamation"></i><strong>Reports</strong><span>Next</span></article>
+                        <article><i class="fa-solid fa-cloud"></i><strong>Storage Health</strong><span>Ready</span></article>
+                    </div>
+                </section>
+
+                <section class="admin-panel" data-permission-section="admins:read">
+                    <div class="admin-list-item-head">
+                        <div>
+                            <h2>Admin Team & Powers</h2>
+                            <p class="admin-panel-note">Create more admins, suspend accounts, and give read-only, writer, manager, or full-power access.</p>
+                        </div>
+                        <button class="admin-mini-btn yellow" id="admin-team-refresh" type="button">REFRESH TEAM</button>
+                    </div>
+
+                    <div class="admin-split admin-team-layout">
+                        <form id="admin-create-form" class="admin-form-grid" data-permission-section="admins:write">
+                            <div class="admin-field">
+                                <label for="new-admin-username">Username</label>
+                                <input class="admin-input" id="new-admin-username" type="text" placeholder="department_admin" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="new-admin-email">Email</label>
+                                <input class="admin-input" id="new-admin-email" type="email" placeholder="admin@college.edu" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="new-admin-password">Temporary Password</label>
+                                <input class="admin-input" id="new-admin-password" type="password" minlength="8" placeholder="Minimum 8 characters" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="new-admin-role">Power Preset</label>
+                                <select class="admin-select" id="new-admin-role">
+                                    <option value="read_only">Read Only</option>
+                                    <option value="writer">Writer</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="super_admin">Full Power</option>
+                                </select>
+                            </div>
+                            <div class="admin-field full">
+                                <label>Custom Permissions</label>
+                                <div class="admin-permission-grid" id="admin-permission-grid"></div>
+                            </div>
+                            <div class="admin-actions full">
+                                <button class="btn btn-yellow" type="submit">CREATE ADMIN <span>&gt;</span></button>
+                            </div>
+                        </form>
+
+                        <div>
+                            <h3>Current Admins</h3>
+                            <div class="admin-list" id="admin-team-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-panel" data-permission-section="folders:read">
+                    <h2>Folder System</h2>
+                    <div class="admin-split">
+                        <form id="folder-form" class="admin-form-grid" data-permission-section="folders:write">
+                            <div class="admin-field full">
+                                <label for="folder-name">Folder Name</label>
+                                <input class="admin-input" id="folder-name" type="text" placeholder="B.Tech, Semester 3, DBMS..." required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="folder-type">Type</label>
+                                <select class="admin-select" id="folder-type" required>
+                                    <option value="course">Course</option>
+                                    <option value="semester">Semester</option>
+                                    <option value="subject">Subject</option>
+                                    <option value="category">Category</option>
+                                </select>
+                            </div>
+                            <div class="admin-field">
+                                <label>Folder Icon</label>
+                                <div class="icon-picker-container" style="display: flex; gap: 10px; align-items: center;">
+                                    <div id="selected-icon-preview" style="font-size: 24px; padding: 5px; background: #222; border: 1px solid #444; border-radius: 4px; width: 40px; text-align: center;"><i class="fa-solid fa-folder"></i></div>
+                                    <button type="button" class="admin-mini-btn" id="open-icon-picker">CHOOSE ICON</button>
+                                </div>
+                                <input type="hidden" id="folder-icon" value='<i class="fa-solid fa-folder"></i>'>
+                            </div>
+                            <div class="admin-field">
+                                <label for="folder-parent">Parent</label>
+                                <select class="admin-select" id="folder-parent">
+                                    <option value="">Root folder</option>
+                                </select>
+                            </div>
+                            <div class="admin-actions full">
+                                <button class="btn btn-yellow" type="submit">CREATE FOLDER <span>&gt;</span></button>
+                            </div>
+                        </form>
+                        <div>
+                            <h3>Existing Folders</h3>
+                            <div class="admin-list" id="folders-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-panel" data-permission-section="files:write">
+                    <h2>Upload PDF</h2>
+                    <form id="file-upload-form" class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="file-title">Title</label>
+                            <input class="admin-input" id="file-title" type="text" required>
+                        </div>
+                        <div class="admin-field full" id="cascading-folder-container">
+                            <label>Select Folder Path</label>
+                            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;" id="cascading-selects">
+                                <!-- Dynamic selects will be injected here -->
+                            </div>
+                            <input type="hidden" id="file-folder" required>
+                            <input type="hidden" id="file-course">
+                            <input type="hidden" id="file-semester">
+                            <input type="hidden" id="file-subject">
+                            <input type="hidden" id="file-category">
+                        </div>
+                        <div class="admin-field">
+                            <label for="file-tags">Tags</label>
+                            <input class="admin-input" id="file-tags" type="text" placeholder="dbms, notes, unit 1">
+                        </div>
+                        <div class="admin-field">
+                            <label for="file-pdf">PDF File</label>
+                            <input class="admin-input" id="file-pdf" type="file" accept="application/pdf,.pdf" required>
+                        </div>
+                        <div class="admin-actions full">
+                            <button class="btn btn-yellow" type="submit">UPLOAD PDF <span>&gt;</span></button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="admin-panel" data-permission-section="files:read">
+                    <div class="admin-list-item-head">
+                        <h2>Manage Files & Folders</h2>
+                        <div class="admin-mini-actions">
+                            <input class="admin-input" id="admin-file-search" type="search" placeholder="Search by name">
+                            <button class="admin-mini-btn yellow" id="admin-files-refresh" type="button">REFRESH</button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-field full" style="margin-top: 15px;">
+                        <label>Browse Specific Folder (Optional)</label>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;" id="manage-cascading-selects">
+                            <!-- Dynamic selects will be injected here -->
+                        </div>
+                        <input type="hidden" id="manage-file-folder">
+                    </div>
+
+                    <div class="admin-list" id="admin-files-list"></div>
+                </section>
+
+                <section class="admin-panel" data-permission-section="reviews:read">
+                    <h2>Review Moderation</h2>
+                    <div class="admin-tabs" id="review-tabs">
+                        <button class="admin-tab is-active" type="button" data-status="">All</button>
+                        <button class="admin-tab" type="button" data-status="pending">Pending</button>
+                        <button class="admin-tab" type="button" data-status="approved">Approved</button>
+                        <button class="admin-tab" type="button" data-status="rejected">Rejected</button>
+                    </div>
+                    <div class="admin-list" id="admin-reviews-list"></div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <div id="icon-picker-modal" class="admin-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
+        <div class="admin-modal-content" style="background:#111; border:1px solid #333; width:90%; max-width:800px; padding:20px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h3 style="color:#ffcc00; font-family:'Press Start 2P', monospace; font-size:12px; margin:0;">UNIPAPER ICON OS</h3>
+                <button type="button" id="close-icon-picker" style="background:none; border:none; color:#fff; font-size:20px; cursor:pointer;"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <p style="color:#ccc; margin-bottom:15px; font-family:'Inter', sans-serif;">Select a symbol for your new folder</p>
+            <div id="icon-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(40px, 1fr)); gap:10px; max-height:400px; overflow-y:auto; padding:10px; background:#0a0a0a; border:1px solid #222;">
+                <!-- Icons injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
