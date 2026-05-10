@@ -345,7 +345,7 @@ body {
 .monitor-greeting {
     font-family: 'Press Start 2P', cursive;
     color: #ffcc00;
-    font-size: clamp(10px, 1.2vw, 16px);
+    font-size: clamp(8px, 1vw, 12px);
     margin-bottom: 20px;
     letter-spacing: 1px;
     text-shadow: 0 0 5px rgba(255, 204, 0, 0.4);
@@ -353,8 +353,7 @@ body {
 
 .main-title {
     font-family: 'VT323', monospace;
-    color: #ffffff;
-    font-size: clamp(32px, 4.5vw, 60px);
+    color: #ffcc00;`n    font-size: clamp(24px, 3.5vw, 45px);
     line-height: 1.2;
     margin-bottom: 15px;
     font-weight: normal;
