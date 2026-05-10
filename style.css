@@ -2324,10 +2324,10 @@ body {
     /* CRT screen: Perfectly map to the phone screen in mobile-bg.png */
     .crt-screen {
         padding: 15px 10px;
-        top: 26.5% !important; /* Adjusted perfectly to fit inside the phone screen */
-        left: 28.5% !important;
-        width: 44.5% !important;
-        height: 38% !important;
+        top: 10.3% !important; /* Mapped from screenshot */
+        left: 19.5% !important;
+        width: 62% !important;
+        height: 79.1% !important;
         border-radius: 12px !important;
         box-shadow: none !important;
     }
@@ -2414,6 +2414,8 @@ body {
     .tags-container {
         gap: 4px;
         margin-bottom: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .monitor-tag {
@@ -2502,10 +2504,10 @@ body {
 
     /* Map exact coords from the image analysis */
     .crt-screen {
-        top: 26.1% !important;
-        left: 28% !important;
-        width: 45.2% !important;
-        height: 38.5% !important;
+        top: 10.3% !important;
+        left: 19.5% !important;
+        width: 62% !important;
+        height: 79.1% !important;
         border-radius: 14px !important;
     }
 
@@ -2514,7 +2516,11 @@ body {
     .subtitle { font-size: clamp(7px, 2vw, 10px) !important; margin-bottom: 8px; }
 
     .monitor-tag { font-size: 6px; padding: 3px 5px; }
-    .tags-container { gap: 3px; }
+    .tags-container {
+        gap: 3px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
     .input__container { padding: 6px; gap: 6px; }
     .input__search { font-size: 11px; padding: 6px; }
