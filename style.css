@@ -2311,7 +2311,7 @@ body {
     }
 
     .desk-container {
-        width: 120vw !important; /* Zoom in so phone fills width */
+        width: 100vw !important; /* Zoom in so phone fills width */
         height: auto !important;
         aspect-ratio: 853 / 1844 !important;
         position: absolute !important;
