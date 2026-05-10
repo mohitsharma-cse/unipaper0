@@ -2251,46 +2251,36 @@ body {
 }
 
 
+
 /* ================================================================
-   COMPREHENSIVE MOBILE & TABLET RESPONSIVE OVERHAUL
+   COMPREHENSIVE MOBILE & TABLET RESPONSIVE - V2 FULL REWRITE
    ================================================================ */
 
 /* ---------- TABLET: max-width 900px ---------- */
 @media (max-width: 900px) {
-    .pill-nav-items,
-    .desktop-only { display: none !important; }
-
+    .pill-nav-items, .desktop-only { display: none !important; }
     .navbar { padding: 10px 16px; gap: 10px; }
     .nav-left { flex: 1; }
     .logo { margin-right: 0; }
-
     .steps-grid { grid-template-columns: 1fr; gap: 24px; }
     .stats-container { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     .content-section { padding: 60px 16px; }
     .section-heading { font-size: 18px; }
-
-    .footer {
-        flex-direction: column; height: auto;
-        padding: 20px; gap: 12px; text-align: center;
-    }
+    .footer { flex-direction: column; height: auto; padding: 20px; gap: 12px; text-align: center; }
     .footer-center { position: static; transform: none; }
     .footer-right { margin-left: 0; }
-
     .icon-mosaic { grid-template-columns: repeat(8, minmax(0, 1fr)); }
     .icon-atlas-head { flex-direction: column; }
     .atlas-count { min-width: auto; width: 100%; }
     .upload-inner { padding: 50px 20px; }
-
-    .admin-hero, .admin-split {
-        grid-template-columns: 1fr;
-        flex-direction: column; align-items: flex-start;
-    }
+    .admin-hero, .admin-split { grid-template-columns: 1fr; flex-direction: column; align-items: flex-start; }
     .admin-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .admin-command-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- MOBILE: max-width 768px ---------- */
 @media (max-width: 768px) {
+    /* NAVBAR */
     .navbar { height: 50px; }
     .main-content { margin-top: 50px; }
     .logo-text { font-size: 11px; }
@@ -2298,81 +2288,178 @@ body {
     .join-btn { padding: 6px 12px; font-size: 12px; }
     .icon-btn { font-size: 14px; }
 
-    .hero-section { height: auto; min-height: 60vh; }
+    /* HERO: Make the monitor + desk fill the mobile screen properly */
+    .hero-section {
+        height: auto !important;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .desk-container {
+        width: 180vw !important;
+        height: auto !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    /* CRT screen: make content bigger on mobile */
+    .crt-screen {
+        padding: 10px;
+    }
+
+    .monitor-content {
+        width: 98%;
+        gap: 6px;
+    }
+
+    /* CRT TEXT SIZES: big enough to read on phone */
+    .monitor-greeting {
+        font-size: 7px !important;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
 
     .main-title {
-        font-size: clamp(10px, 3vw, 18px) !important;
-        line-height: 1.5 !important;
+        font-size: clamp(14px, 4vw, 22px) !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px;
     }
+
     .subtitle {
-        font-size: clamp(8px, 2vw, 12px) !important;
+        font-size: clamp(9px, 2.5vw, 14px) !important;
         max-width: 95%;
+        margin-bottom: 12px;
+        line-height: 1.4;
     }
-    .monitor-greeting { font-size: clamp(5px, 1.2vw, 8px); margin-bottom: 10px; }
-    .monitor-footer-text { font-size: 12px; }
 
+    .monitor-footer-text {
+        font-size: 10px;
+        margin-top: 6px;
+    }
+
+    /* SEARCH BOX inside CRT */
+    .search-box {
+        width: 95%;
+        margin-bottom: 10px;
+    }
+
+    .search-input-wrapper {
+        padding: 4px 4px 4px 10px;
+    }
+
+    .pixel-input {
+        font-size: 11px !important;
+        padding: 6px 0 !important;
+    }
+
+    .search-action-btn {
+        font-size: 7px !important;
+        padding: 8px 10px !important;
+    }
+
+    .search-icon-left {
+        font-size: 12px;
+        margin-right: 6px;
+    }
+
+    /* 3D SEARCH BOX (input__container): flatten completely */
     .input__container {
-        transform: none !important; box-shadow: 4px 4px 0 #111;
-        padding: 10px; gap: 10px; width: 95%;
+        transform: none !important;
+        box-shadow: 3px 3px 0 #111;
+        padding: 8px;
+        gap: 8px;
+        width: 95%;
+        border-width: 2px;
     }
-    .input__container:hover { transform: none !important; box-shadow: 6px 6px 0 #111; }
-    .input__search { transform: none !important; font-size: 14px; padding: 10px; }
-    .input__search:hover, .input__search:focus { transform: none !important; box-shadow: 3px 3px 0 0 #fff; }
-    .input__button__shadow { transform: none !important; padding: 8px 12px; }
+    .input__container:hover { transform: none !important; box-shadow: 4px 4px 0 #111; }
+    .input__search { transform: none !important; font-size: 12px; padding: 8px; border-width: 2px; }
+    .input__search:hover, .input__search:focus { transform: none !important; box-shadow: 2px 2px 0 0 #fff; }
+    .input__button__shadow { transform: none !important; padding: 6px 10px; border-width: 2px; }
     .input__button__shadow:hover { transform: none !important; }
-    .input__container::before { transform: none !important; font-size: 8px; top: -12px; left: 12px; padding: 4px 8px; }
+    .input__container::before {
+        transform: none !important;
+        font-size: 7px;
+        top: -10px;
+        left: 10px;
+        padding: 3px 6px;
+    }
+    .shadow__input { display: none; }
 
-    .search-box { width: 95%; }
-    .search-action-btn { font-size: 8px !important; padding: 8px 12px !important; }
-    .pixel-input { font-size: 13px !important; padding: 8px !important; }
+    /* TAGS inside CRT */
+    .tags-container {
+        gap: 4px;
+        margin-bottom: 8px;
+    }
 
-    .tags-container { gap: 6px; margin-bottom: 15px; }
-    .monitor-tag { font-size: 10px; padding: 6px 10px; }
+    .monitor-tag {
+        font-size: 8px;
+        padding: 4px 8px;
+        gap: 4px;
+        border-radius: 4px;
+    }
 
+    /* STATS BAR */
     .stats-bar { padding: 40px 16px; }
     .stat-number { font-size: 22px; }
     .stat-label { font-size: 18px; }
 
+    /* SUBJECTS */
     .subjects-grid { grid-template-columns: 1fr; gap: 14px; }
+
+    /* LIBRARY */
     .library-grid { grid-template-columns: 1fr; }
     .library-toolbar { flex-direction: column; align-items: stretch; }
     .library-filter-row { width: 100%; }
     .library-filter { width: 100%; text-align: center; }
     .library-card-actions { flex-direction: column; }
 
+    /* REVIEWS */
     .review-card {
-        width: min(320px, 85vw) !important;
-        height: auto !important; min-height: 300px; padding: 20px;
+        width: min(300px, 82vw) !important;
+        height: auto !important;
+        min-height: 280px;
+        padding: 18px;
     }
-    .review-card-quote { font-size: 18px; }
-    .reviews-stage { height: 420px !important; }
+    .review-card-quote { font-size: 16px; }
+    .reviews-stage { height: 400px !important; }
 
+    /* REACTIONS */
     .review-reactions-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px; }
-    .review-reaction { min-height: 90px; padding: 0.75rem 0.25rem; }
-    .review-reaction-emoji { font-size: 24px; }
-    .review-reaction-count { font-size: 20px; }
+    .review-reaction { min-height: 80px; padding: 0.6rem 0.2rem; }
+    .review-reaction-emoji { font-size: 22px; }
+    .review-reaction-count { font-size: 18px; }
     .review-reactions-head { flex-direction: column; }
     .review-reactions-panel { padding: 1rem; margin: 2rem 0.5rem 0; }
-
     .reviews-controls { gap: 12px; }
-    .review-arrow.btn.btn-black { min-width: 44px; height: 44px; font-size: 16px; }
+    .review-arrow.btn.btn-black { min-width: 42px; height: 42px; font-size: 16px; }
 
-    .icon-mosaic { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
-    .atlas-feature-strip span { font-size: 7px; padding: 7px 9px; }
+    /* ICON ATLAS */
+    .icon-mosaic { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; }
+    .atlas-feature-strip span { font-size: 7px; padding: 6px 8px; }
 
+    /* BUTTONS */
     .btn { font-size: 10px; padding: 12px 18px; gap: 10px; }
+
+    /* SECTION HEADERS */
     .section-heading { font-size: 16px; }
     .section-desc { font-size: 14px; }
     .section-header { margin-bottom: 35px; }
+
+    /* HOW IT WORKS STEPS */
     .step-card { padding: 30px 20px; }
     .step-card h3 { font-size: 24px; }
     .step-card p { font-size: 14px; }
 
+    /* ADMIN PANEL */
     .admin-form-grid, .admin-stats-grid { grid-template-columns: 1fr; }
     .admin-panel { padding: 16px; }
     .admin-list-item-head { flex-direction: column; align-items: stretch; gap: 12px; }
     .admin-mini-actions { justify-content: flex-start; width: 100%; }
-    .admin-command-grid, .icon-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .admin-command-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .admin-list-item-head>div:first-child { width: 100%; }
 }
 
@@ -2382,10 +2469,21 @@ body {
     .avatar { display: none; }
     .nav-right { gap: 8px; }
 
-    .main-title { font-size: clamp(8px, 2.5vw, 14px) !important; }
-    .subtitle { font-size: clamp(7px, 1.8vw, 10px) !important; }
-    .monitor-greeting { font-size: 5px; margin-bottom: 6px; }
-    .monitor-tag { font-size: 8px; padding: 4px 7px; }
+    /* Hero: zoom the desk even more to show the monitor bigger */
+    .desk-container {
+        width: 220vw !important;
+    }
+
+    .monitor-greeting { font-size: 6px !important; margin-bottom: 4px; }
+    .main-title { font-size: clamp(12px, 3.5vw, 18px) !important; }
+    .subtitle { font-size: clamp(8px, 2vw, 11px) !important; margin-bottom: 8px; }
+
+    .monitor-tag { font-size: 7px; padding: 3px 6px; }
+    .tags-container { gap: 3px; }
+
+    .input__container { padding: 6px; gap: 6px; }
+    .input__search { font-size: 11px; padding: 6px; }
+    .input__container::before { font-size: 6px; }
 
     .stats-container { grid-template-columns: 1fr; gap: 20px; }
     .stat-number { font-size: 20px; }
@@ -2394,14 +2492,14 @@ body {
     .sc-name { font-size: 22px; }
     .sc-icon { width: 48px; height: 48px; font-size: 24px; }
 
-    .review-card { width: min(280px, 88vw) !important; padding: 16px; }
-    .review-card-quote { font-size: 16px; }
-    .review-card-photo { width: 40px; height: 40px; }
+    .review-card { width: min(260px, 85vw) !important; padding: 14px; }
+    .review-card-quote { font-size: 15px; }
+    .review-card-photo { width: 38px; height: 38px; }
 
     .review-reactions-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 5px !important; }
-    .review-reaction-emoji { font-size: 20px; }
-    .review-reaction-count { font-size: 18px; }
-    .review-reaction-label { font-size: 10px; }
+    .review-reaction-emoji { font-size: 18px; }
+    .review-reaction-count { font-size: 16px; }
+    .review-reaction-label { font-size: 9px; }
 
     .icon-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .footer { padding: 16px; }
