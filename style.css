@@ -263,7 +263,7 @@ body {
     height: 58.5%;
     /* Adjusts the HEIGHT of the monitor screen */
 
-    background-color: #0a0a0a;
+    background-color: #000; /* Solid black for mobile layering */
     background-image: 
         linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
@@ -2487,6 +2487,65 @@ body {
 
 /* ---------- SMALL MOBILE: max-width 480px ---------- */
 @media (max-width: 480px) {
+    /* Mobile-specific content styling */
+    .glitched-text {
+        color: #ffcc00;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 8px !important;
+        line-height: 1.5;
+        display: block;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+    .main-title { display: none !important; } /* Hide title on mobile to match screenshot */
+    .subtitle { 
+        color: #ddd; 
+        font-size: 9px !important; 
+        margin-top: 15px; 
+        margin-bottom: 20px;
+        line-height: 1.4;
+        max-width: 90%;
+    }
+    .search-box {
+        background: rgba(40, 40, 40, 0.9);
+        border: 2px solid #555;
+        border-radius: 4px;
+        padding: 5px;
+        width: 95% !important;
+    }
+    .search-input-wrapper {
+        background: #ccc;
+        border-radius: 2px;
+        padding: 2px !important;
+    }
+    .pixel-input {
+        background: transparent !important;
+        color: #000 !important;
+        font-size: 10px !important;
+        padding: 8px !important;
+    }
+    .pixel-input::placeholder { color: #555; }
+    
+    .search-action-btn {
+        background: #eee !important;
+        color: #000 !important;
+        font-family: 'VT323', monospace;
+        font-size: 14px !important;
+        border: 2px solid #333 !important;
+        margin-top: 10px;
+        width: 80%;
+        padding: 10px !important;
+        box-shadow: 4px 4px 0px #222 !important;
+    }
+    .search-icon-left { display: none; }
+    
+    .monitor-tag {
+        background: #444 !important;
+        color: #eee !important;
+        border: 1px solid #666 !important;
+        border-radius: 2px !important;
+        font-size: 9px !important;
+        padding: 6px 12px !important;
+    }
     .icon-btn { display: none !important; }
     .avatar { display: none; }
     .nav-right { gap: 8px; }
@@ -2605,6 +2664,65 @@ body {
 }
 
 @media (max-width: 480px) {
+    /* Mobile-specific content styling */
+    .glitched-text {
+        color: #ffcc00;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 8px !important;
+        line-height: 1.5;
+        display: block;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+    .main-title { display: none !important; } /* Hide title on mobile to match screenshot */
+    .subtitle { 
+        color: #ddd; 
+        font-size: 9px !important; 
+        margin-top: 15px; 
+        margin-bottom: 20px;
+        line-height: 1.4;
+        max-width: 90%;
+    }
+    .search-box {
+        background: rgba(40, 40, 40, 0.9);
+        border: 2px solid #555;
+        border-radius: 4px;
+        padding: 5px;
+        width: 95% !important;
+    }
+    .search-input-wrapper {
+        background: #ccc;
+        border-radius: 2px;
+        padding: 2px !important;
+    }
+    .pixel-input {
+        background: transparent !important;
+        color: #000 !important;
+        font-size: 10px !important;
+        padding: 8px !important;
+    }
+    .pixel-input::placeholder { color: #555; }
+    
+    .search-action-btn {
+        background: #eee !important;
+        color: #000 !important;
+        font-family: 'VT323', monospace;
+        font-size: 14px !important;
+        border: 2px solid #333 !important;
+        margin-top: 10px;
+        width: 80%;
+        padding: 10px !important;
+        box-shadow: 4px 4px 0px #222 !important;
+    }
+    .search-icon-left { display: none; }
+    
+    .monitor-tag {
+        background: #444 !important;
+        color: #eee !important;
+        border: 1px solid #666 !important;
+        border-radius: 2px !important;
+        font-size: 9px !important;
+        padding: 6px 12px !important;
+    }
     .fun-item {
         font-size: 18px;
     }
@@ -2615,3 +2733,6 @@ body {
 
 .mobile-bg { display: none; }
 
+
+.mobile-only { display: none; }
+@media (max-width: 768px) { .mobile-only { display: inline-block; } .desktop-only { display: none; } }
