@@ -2752,6 +2752,39 @@ body {
 
 /* ---------- SMALL MOBILE: max-width 480px ---------- */
 @media (max-width: 480px) {
+    .crt-screen {
+        background-color: #000 !important; /* Cover the background image text */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        overflow-y: auto !important;
+    }
+    
+    /* Ensure child elements don't inherit desktop centering offsets */
+    .monitor-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .search-box {
+        width: 90% !important;
+        margin: 10px 0 !important;
+        transform: none !important;
+    }
+    
+    .tags-container {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        margin-top: 10px !important;
+    }
 
     /* Mobile-specific content styling */
     .crt-screen {
@@ -3057,6 +3090,39 @@ body {
 }
 
 @media (max-width: 480px) {
+    .crt-screen {
+        background-color: #000 !important; /* Cover the background image text */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        overflow-y: auto !important;
+    }
+    
+    /* Ensure child elements don't inherit desktop centering offsets */
+    .monitor-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .search-box {
+        width: 90% !important;
+        margin: 10px 0 !important;
+        transform: none !important;
+    }
+    
+    .tags-container {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        margin-top: 10px !important;
+    }
 
     /* Mobile-specific content styling */
     .glitched-text {
