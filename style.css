@@ -251,35 +251,52 @@ body {
 Ã°Å¸â€˜â€¡ EDIT THIS PROPERTY TO CHANGE THE BLACK MONITOR SIZE Ã°Å¸â€˜â€¡
 =========================================================
 */
-.crt-screen {
-    position: absolute;
-    /* Adjust these to perfectly match your specific monitor background */
-    top: 16.7%;
-    /* Moves the monitor screen UP or DOWN */
-    left: 24.95%;
-    /* Moves the monitor screen LEFT or RIGHT */
-    width: 50%;
-    /* Adjusts the WIDTH of the monitor screen */
-    height: 58.5%;
-    /* Adjusts the HEIGHT of the monitor screen */
+    .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
 
-    background-color: rgba(10, 10, 10, 0.4);
-    /* Semi-transparent base */
-    background-image:
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: center center;
-    border-radius: 12px;
-    z-index: 5;
-    overflow: hidden;
-    box-shadow: inset 0 0 18px 2px rgba(0, 0, 0, 0.8);
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
+    }
 
 /* 
 =========================================================
@@ -1463,10 +1480,52 @@ body {
     /* Let crt-screen capture the mouse events and proxy them */
 }
 
-.crt-screen {
-    pointer-events: auto;
-    /* Ensure it receives mousemove */
-}
+    .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
+    }
 
 /* Allow interacting with buttons and textarea despite relative positioned monitor-content */
 .monitor-content {
@@ -1677,9 +1736,52 @@ body {
 }
 
 /* Re-enable mouse events on CRT screen */
-.crt-screen {
-    pointer-events: auto;
-}
+    .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
+    }
 
 .monitor-content {
     pointer-events: none;
@@ -2449,15 +2551,51 @@ body {
     }
 
     /* CRT screen: Perfectly map to the phone screen in mobile-bg.png */
-    .crt-screen {
-        padding: 15px 10px;
-        top: 10% !important;
-        /* Mapped from screenshot */
-        left: 20.9% !important;
-        width: 59% !important;
-        height: 60% !important;
+        .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
         border-radius: 12px 12px 35px 35px !important;
-        box-shadow: none !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
     }
 
     .monitor-content {
@@ -2752,14 +2890,51 @@ body {
 
 /* ---------- SMALL MOBILE: max-width 480px ---------- */
 @media (max-width: 480px) {
-    .crt-screen {
-        background-color: #000 !important; /* Cover the background image text */
+        .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
         padding: 10px !important;
-        overflow-y: auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
     }
     
     /* Ensure child elements don't inherit desktop centering offsets */
@@ -2787,11 +2962,51 @@ body {
     }
 
     /* Mobile-specific content styling */
-    .crt-screen {
+        .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
         background-color: #000 !important;
-        /* Very transparent on mobile */
-        backdrop-filter: blur(1px);
-        /* Slight blur for professional look */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
     }
 
     .glitched-text {
@@ -2883,12 +3098,51 @@ body {
 
 
     /* Map exact coords from the image analysis */
-    .crt-screen {
-        top: 10.3% !important;
-        left: 19.5% !important;
-        width: 62% !important;
-        height: 79.1% !important;
-        border-radius: 14px !important;
+        .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
     }
 
     .monitor-greeting {
@@ -3090,14 +3344,51 @@ body {
 }
 
 @media (max-width: 480px) {
-    .crt-screen {
-        background-color: #000 !important; /* Cover the background image text */
+        .crt-screen {
+        top: 10% !important;      /* Starts at the top of the phone screen */
+        left: 21% !important;     /* Centers it perfectly inside the case */
+        width: 58.5% !important;  /* Fills the full width of the screen area */
+        height: 79% !important;   /* Fills the full height of the screen area */
+        border-radius: 12px 12px 35px 35px !important;
+        z-index: 100 !important;   /* Ensures it is on the upper layer */
+        background-color: #000 !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
         padding: 10px !important;
-        overflow-y: auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    .monitor-content {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: none !important;
+    }
+
+    .glitched-text {
+        font-size: 7px !important;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 8px !important;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .monitor-tag {
+        font-size: 8px !important;
+        padding: 5px 8px !important;
     }
     
     /* Ensure child elements don't inherit desktop centering offsets */
