@@ -257,17 +257,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
 .monitor-content {
     position: relative;
@@ -1469,17 +1485,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -1728,17 +1760,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -2546,17 +2594,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -2888,17 +2952,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -2963,17 +3043,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -3102,17 +3198,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
@@ -3351,17 +3463,33 @@ body {
     left: 19.5%;
     width: 62%;
     height: 58.5%;
-    background-color: rgba(10, 10, 10, 0.6);
-    background-image: 
-        linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
-        inset 0 0 100px rgba(0,0,0,0.9),
-        0 0 20px rgba(255, 204, 0, 0.15);
+}
+
+.design-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(35, 35, 35, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 204, 0, 0.1);
+    box-shadow: inset 0 0 120px rgba(0,0,0,1);
+}
+
+.design-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
 }
     
     .monitor-content {
