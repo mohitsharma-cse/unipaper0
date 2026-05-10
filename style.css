@@ -337,7 +337,7 @@ body {
 .monitor-greeting {
     font-family: 'Press Start 2P', cursive;
     color: #ffcc00;
-    font-size: clamp(8px, 0.8vw, 12px);
+    font-size: clamp(10px, 1.2vw, 16px);
     margin-bottom: 20px;
     letter-spacing: 1px;
     text-shadow: 0 0 5px rgba(255, 204, 0, 0.4);
@@ -346,7 +346,7 @@ body {
 .main-title {
     font-family: 'VT323', monospace;
     color: #ffffff;
-    font-size: clamp(24px, 3.5vw, 48px);
+    font-size: clamp(32px, 4.5vw, 60px);
     line-height: 1.2;
     margin-bottom: 15px;
     font-weight: normal;
@@ -357,7 +357,7 @@ body {
 .subtitle {
     font-family: 'Inter', sans-serif;
     color: #a1a1aa;
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: clamp(14px, 1.3vw, 20px);
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 80%;
@@ -375,9 +375,9 @@ body {
     display: flex;
     align-items: center;
     background: #111111;
-    border: 1px solid #ffcc00;
+    border: 2px solid #ffcc00;
     border-radius: 8px;
-    padding: 5px 5px 5px 15px;
+    padding: 8px 8px 8px 18px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -393,7 +393,7 @@ body {
     border: none;
     color: #fff;
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     padding: 10px 0;
     outline: none;
 }
@@ -403,8 +403,8 @@ body {
     background: #ffcc00;
     color: #000;
     font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    padding: 12px 20px;
+    font-size: 13px;
+    padding: 14px 24px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -482,8 +482,8 @@ body {
     background: #111111;
     color: #a1a1aa;
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    padding: 10px 16px;
+    font-size: 15px;
+    padding: 12px 20px;
     border: 1px solid #333;
     border-radius: 6px;
     cursor: pointer;
@@ -506,7 +506,7 @@ body {
 .monitor-footer-text {
     font-family: 'VT323', monospace;
     color: #71717a;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 
