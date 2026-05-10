@@ -2512,3 +2512,66 @@ body {
 
 /* ════════════ REVIEWS STAGE TOP MARGIN ════════════ */
 .reviews-stage { margin-top: 60px; }
+
+/* ================================================================
+   MOBILE-ONLY FUN EXAM BANNER (scrolling ticker)
+   ================================================================ */
+.mobile-fun-banner {
+    display: none; /* Hidden on desktop */
+    background: linear-gradient(90deg, #111 0%, #1a1a1f 50%, #111 100%);
+    border-top: 3px solid #ffcc00;
+    border-bottom: 3px solid #ffcc00;
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.fun-ticker {
+    display: flex;
+    gap: 60px;
+    animation: tickerScroll 25s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.fun-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #ffcc00;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.8);
+    white-space: nowrap;
+}
+
+.fun-item i {
+    font-size: 14px;
+}
+
+@keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+    .mobile-fun-banner {
+        display: block; /* Show on mobile */
+    }
+
+    /* Kill black bars: tighten the hero section */
+    .hero-section {
+        min-height: auto !important;
+        padding: 0 !important;
+        background: #060608 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .fun-item {
+        font-size: 8px;
+    }
+    .fun-item i {
+        font-size: 12px;
+    }
+}
