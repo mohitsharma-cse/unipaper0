@@ -2331,6 +2331,191 @@ body {
 }
 
 
+
 .reviews-stage {
     margin-top: 60px;
+}
+
+/* ════════════════════════════════════════════════════
+   MOBILE HERO — Hand-holding-phone scene
+   ════════════════════════════════════════════════════
+
+   On desktop  → .desktop-bg visible, .mobile-bg hidden, desk-container uses 1053/533 ratio
+   On mobile   → .mobile-bg visible, .desktop-bg hidden, desk-container uses the phone image ratio
+   The .crt-screen is repositioned to sit exactly on the phone screen.
+   ═════════════════════════════════════════════════════ */
+
+/* ---------- Images: show/hide by screen size ---------- */
+.mobile-bg  { display: none; }
+.desktop-bg { display: block; }
+
+@media (max-width: 768px) {
+    /* ── 1. Swap background image ── */
+    .desktop-bg { display: none !important; }
+    .mobile-bg  {
+        display: block !important;
+        width: 100%;
+        height: auto;
+        max-height: 100vh;
+        object-fit: contain;
+    }
+
+    /* ── 2. Reset desk-container to match mobile-bg aspect ratio ── */
+    /* mobile-bg.png is portrait: ~473×1024 px → ratio ≈ 473/1024 */
+    .desk-container {
+        aspect-ratio: 473 / 1024 !important;
+        width: auto !important;
+        height: 100vh !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        position: absolute !important;
+    }
+
+    /* ── 3. Phone screen area — user's exact coordinates ── */
+    .crt-screen {
+        top: 11.8% !important;
+        left: 28% !important;
+        width: 45% !important;
+        height: 59% !important;
+        border-radius: 20px !important;
+        background-color: #000000 !important;
+        background-image:
+            linear-gradient(rgba(255, 204, 0, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 204, 0, 0.04) 1px, transparent 1px) !important;
+        background-size: 20px 20px !important;
+        box-shadow:
+            inset 0 0 30px rgba(0,0,0,0.9),
+            0 0 0 1px rgba(255,255,255,0.08) !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        padding-top: 10% !important;
+    }
+
+    /* ── 4. Hide decorative canvas & scanlines (too heavy for small screen) ── */
+    .crt-screen .shapegrid-canvas,
+    .crt-screen .crt-flicker { display: none !important; }
+
+    /* Keep scanlines but lighter */
+    .scanlines {
+        background-size: 100% 3px !important;
+        opacity: 0.5 !important;
+    }
+
+    /* ── 5. CRT top glow line — keep but more subtle ── */
+    .crt-screen::before {
+        height: 1px !important;
+    }
+
+    /* ── 6. Monitor content — fill the phone screen ── */
+    .monitor-content {
+        width: 92% !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* ── 7. Greeting ── */
+    .monitor-greeting {
+        font-size: clamp(4px, 1.2vw, 7px) !important;
+        margin-bottom: 4% !important;
+        letter-spacing: 0 !important;
+    }
+
+    /* ── 8. Main Title ── */
+    .main-title {
+        font-size: clamp(8px, 2.8vw, 16px) !important;
+        line-height: 1.4 !important;
+        margin-bottom: 3% !important;
+    }
+
+    /* ── 9. Subtitle ── */
+    .subtitle {
+        font-size: clamp(7px, 1.8vw, 11px) !important;
+        margin-bottom: 4% !important;
+        line-height: 1.5 !important;
+    }
+
+    /* ── 10. Search box ── */
+    .search-box {
+        width: 95% !important;
+        margin-bottom: 3% !important;
+    }
+
+    .search-input-wrapper {
+        padding: 3px 3px 3px 8px !important;
+        border-radius: 6px !important;
+    }
+
+    .search-icon-left {
+        font-size: 10px !important;
+        margin-right: 5px !important;
+    }
+
+    .pixel-input {
+        font-size: clamp(8px, 2vw, 12px) !important;
+        padding: 5px 0 !important;
+    }
+
+    .search-action-btn {
+        font-size: clamp(5px, 1.3vw, 8px) !important;
+        padding: 6px 8px !important;
+        gap: 4px !important;
+        border-radius: 3px !important;
+    }
+
+    /* ── 11. Tags ── */
+    .tags-container {
+        gap: 3px !important;
+        margin-bottom: 3% !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .monitor-tag {
+        font-size: clamp(5px, 1.2vw, 8px) !important;
+        padding: 4px 6px !important;
+        gap: 4px !important;
+        border-radius: 4px !important;
+    }
+
+    /* ── 12. Footer text ── */
+    .monitor-footer-text {
+        font-size: clamp(9px, 2vw, 13px) !important;
+    }
+
+    /* ── 13. Hide search suggestions on mobile (not enough space) ── */
+    .search-suggestions { display: none !important; }
+
+    /* ── 14. 3D input container: disable 3D tilt on mobile ── */
+    .input__container {
+        transform: none !important;
+        width: 95% !important;
+        padding: 8px !important;
+        max-width: unset !important;
+    }
+    .input__search { font-size: 13px !important; padding: 8px !important; }
+    .input__button__shadow { padding: 8px !important; }
+
+    /* ── 15. Navbar: hide desktop pills, show compact ── */
+    .pill-nav-items.desktop-only { display: none !important; }
+
+    /* ── 16. hero-section height ── */
+    .hero-section {
+        height: 100vh !important;
+        background: #000 !important;
+    }
+}
+
+/* ── Very small phones (≤ 480px) — tighten further ── */
+@media (max-width: 480px) {
+    .monitor-greeting { font-size: 4px !important; }
+    .main-title       { font-size: clamp(7px, 2.5vw, 14px) !important; }
+    .subtitle         { font-size: 7px !important; }
+    .monitor-tag      { font-size: 5px !important; padding: 3px 5px !important; }
+    .search-action-btn { font-size: 5px !important; padding: 5px 6px !important; }
+    .pixel-input       { font-size: 8px !important; }
 }
