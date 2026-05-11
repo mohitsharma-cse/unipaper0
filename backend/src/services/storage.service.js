@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import streamifier from 'streamifier';
 import { cloudinary, configureCloudinary, hasCloudinaryConfig } from '../config/cloudinary.js';
-import { createUploadThingClient, hasUploadThingConfig, UTFile } from '../config/uploadthing.js';
+import { createUploadThingClient, hasUploadThingConfig, hasUploadThingToken, UTFile } from '../config/uploadthing.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,19 +23,25 @@ const getPreferredStorageProvider = () => (process.env.STORAGE_PROVIDER || 'auto
 export const getConfiguredStorageOptions = () => {
   const options = [];
 
-  if (hasUploadThingConfig()) {
-    options.push({
-      key: 'uploadthing',
-      label: process.env.UPLOADTHING_STORAGE_LABEL || 'UploadThing',
-      provider: 'uploadthing'
-    });
+  for (let index = 1; index <= 10; index += 1) {
+    const token = process.env[`UPLOADTHING_${index}_TOKEN`];
+
+    if (hasUploadThingToken(token)) {
+      options.push({
+        key: process.env[`UPLOADTHING_${index}_KEY`] || `uploadthing-${index}`,
+        label: process.env[`UPLOADTHING_${index}_LABEL`] || `UploadThing ${index}`,
+        provider: 'uploadthing',
+        token
+      });
+    }
   }
 
-  if (hasCloudinaryConfig()) {
+  if (hasUploadThingConfig() && !options.some((option) => option.key === 'uploadthing')) {
     options.push({
-      key: 'cloudinary',
-      label: process.env.CLOUDINARY_STORAGE_LABEL || 'Cloudinary',
-      provider: 'cloudinary'
+      key: process.env.UPLOADTHING_STORAGE_KEY || 'uploadthing-1',
+      label: process.env.UPLOADTHING_STORAGE_LABEL || 'UploadThing 1',
+      provider: 'uploadthing',
+      token: process.env.UPLOADTHING_TOKEN
     });
   }
 
@@ -90,15 +96,11 @@ export const getActiveStorageProvider = () => {
   }
 
   if (preferred === 'cloudinary') {
-    return hasCloudinaryConfig() ? 'cloudinary' : 'cloudinary_missing_config';
+    return 'cloudinary_disabled';
   }
 
   if (hasUploadThingConfig()) {
     return 'uploadthing';
-  }
-
-  if (hasCloudinaryConfig()) {
-    return 'cloudinary';
   }
 
   return 'local';
@@ -157,11 +159,11 @@ const uploadToCloudinary = (buffer, originalName) => new Promise((resolve, rejec
   streamifier.createReadStream(buffer).pipe(uploadStream);
 });
 
-const uploadToUploadThing = async (buffer, originalName) => {
-  const client = createUploadThingClient();
+const uploadToUploadThing = async (buffer, originalName, storageOption) => {
+  const client = createUploadThingClient(storageOption.token);
 
   if (!client) {
-    const error = new Error('UploadThing is selected but UPLOADTHING_TOKEN is missing.');
+    const error = new Error(`${storageOption.label} is selected but its UploadThing token is missing.`);
     error.statusCode = 500;
     throw error;
   }
@@ -187,7 +189,7 @@ const uploadToUploadThing = async (buffer, originalName) => {
     pdfUrl: result.data.ufsUrl || result.data.url,
     publicId: `uploadthing:${result.data.key}`,
     storageProvider: 'uploadthing',
-    storageKey: 'uploadthing'
+    storageKey: storageOption.key
   };
 };
 
@@ -217,7 +219,7 @@ export const uploadPdfFile = async (file, storageKey) => {
   const selectedStorage = resolveStorageOption(storageKey);
 
   if (selectedStorage.provider === 'uploadthing') {
-    return uploadToUploadThing(file.buffer, file.originalname);
+    return uploadToUploadThing(file.buffer, file.originalname, selectedStorage);
   }
 
   if (selectedStorage.provider === 'cloudinary') {
@@ -227,13 +229,16 @@ export const uploadPdfFile = async (file, storageKey) => {
   return uploadToLocalStorage(file.buffer, file.originalname);
 };
 
-export const deletePdfFile = async ({ publicId, storageProvider }) => {
+export const deletePdfFile = async ({ publicId, storageProvider, storageKey }) => {
   if (!publicId) {
     return;
   }
 
   if (storageProvider === 'uploadthing' || publicId.startsWith('uploadthing:')) {
-    const client = createUploadThingClient();
+    const options = getConfiguredStorageOptions();
+    const option = options.find((item) => item.key === storageKey)
+      || options.find((item) => item.provider === 'uploadthing');
+    const client = createUploadThingClient(option?.token);
     const key = publicId.replace(/^uploadthing:/, '');
 
     if (!client || !key) {

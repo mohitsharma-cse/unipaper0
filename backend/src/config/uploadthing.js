@@ -9,13 +9,15 @@ const isRealValue = (value) => Boolean(
 
 export const hasUploadThingConfig = () => isRealValue(process.env.UPLOADTHING_TOKEN);
 
-export const createUploadThingClient = () => {
-  if (!hasUploadThingConfig()) {
+export const hasUploadThingToken = (token) => isRealValue(token);
+
+export const createUploadThingClient = (token = process.env.UPLOADTHING_TOKEN) => {
+  if (!hasUploadThingToken(token)) {
     return null;
   }
 
   return new UTApi({
-    token: process.env.UPLOADTHING_TOKEN
+    token
   });
 };
 
