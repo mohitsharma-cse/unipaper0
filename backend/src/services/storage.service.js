@@ -20,6 +20,68 @@ const safeFileName = (name) => name
 
 const getPreferredStorageProvider = () => (process.env.STORAGE_PROVIDER || 'auto').toLowerCase();
 
+export const getConfiguredStorageOptions = () => {
+  const options = [];
+
+  if (hasUploadThingConfig()) {
+    options.push({
+      key: 'uploadthing',
+      label: process.env.UPLOADTHING_STORAGE_LABEL || 'UploadThing',
+      provider: 'uploadthing'
+    });
+  }
+
+  if (hasCloudinaryConfig()) {
+    options.push({
+      key: 'cloudinary',
+      label: process.env.CLOUDINARY_STORAGE_LABEL || 'Cloudinary',
+      provider: 'cloudinary'
+    });
+  }
+
+  if (process.env.ENABLE_LOCAL_STORAGE_OPTION === 'true' || !options.length) {
+    options.push({
+      key: 'local',
+      label: 'Local Server Storage',
+      provider: 'local'
+    });
+  }
+
+  return options;
+};
+
+export const getPublicStorageOptions = () => getConfiguredStorageOptions().map((option) => ({
+  key: option.key,
+  label: option.label,
+  provider: option.provider
+}));
+
+const resolveStorageOption = (storageKey) => {
+  const options = getConfiguredStorageOptions();
+
+  if (storageKey) {
+    const selected = options.find((option) => option.key === storageKey);
+
+    if (!selected) {
+      const error = new Error('Selected storage option is not available.');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    return selected;
+  }
+
+  const activeProvider = getActiveStorageProvider();
+
+  if (activeProvider.endsWith('_missing_config')) {
+    const error = new Error(`${activeProvider.replace('_missing_config', '')} storage is selected but environment variables are incomplete.`);
+    error.statusCode = 500;
+    throw error;
+  }
+
+  return options.find((option) => option.provider === activeProvider) || options[0];
+};
+
 export const getActiveStorageProvider = () => {
   const preferred = getPreferredStorageProvider();
 
@@ -44,6 +106,29 @@ export const getActiveStorageProvider = () => {
 
 export const getUploadsRoot = () => uploadsRoot;
 
+export const resolveLocalPdfPath = (publicId) => {
+  const fileName = String(publicId || '').replace(/^local:/, '');
+  const targetPath = path.resolve(pdfUploadsRoot, fileName);
+  const relativePath = path.relative(pdfUploadsRoot, targetPath);
+
+  if (!fileName || relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    throw new Error('Invalid local file path.');
+  }
+
+  return targetPath;
+};
+
+export const getSignedCloudinaryPdfUrl = (publicId, { attachment = false } = {}) => {
+  configureCloudinary();
+
+  return cloudinary.utils.private_download_url(publicId, 'pdf', {
+    resource_type: 'raw',
+    type: 'upload',
+    expires_at: Math.floor(Date.now() / 1000) + 300,
+    attachment
+  });
+};
+
 const uploadToCloudinary = (buffer, originalName) => new Promise((resolve, reject) => {
   configureCloudinary();
 
@@ -62,7 +147,8 @@ const uploadToCloudinary = (buffer, originalName) => new Promise((resolve, rejec
         resolve({
           pdfUrl: result.secure_url,
           publicId: result.public_id,
-          storageProvider: 'cloudinary'
+          storageProvider: 'cloudinary',
+          storageKey: 'cloudinary'
         });
       }
     }
@@ -100,7 +186,8 @@ const uploadToUploadThing = async (buffer, originalName) => {
   return {
     pdfUrl: result.data.ufsUrl || result.data.url,
     publicId: `uploadthing:${result.data.key}`,
-    storageProvider: 'uploadthing'
+    storageProvider: 'uploadthing',
+    storageKey: 'uploadthing'
   };
 };
 
@@ -115,31 +202,26 @@ const uploadToLocalStorage = async (buffer, originalName) => {
   return {
     pdfUrl: `${publicUrl}/uploads/pdfs/${fileName}`,
     publicId: `local:${fileName}`,
-    storageProvider: 'local'
+    storageProvider: 'local',
+    storageKey: 'local'
   };
 };
 
-export const uploadPdfFile = async (file) => {
+export const uploadPdfFile = async (file, storageKey) => {
   if (!file?.buffer) {
     const error = new Error('PDF file is required.');
     error.statusCode = 400;
     throw error;
   }
 
-  const activeProvider = getActiveStorageProvider();
+  const selectedStorage = resolveStorageOption(storageKey);
 
-  if (activeProvider === 'uploadthing') {
+  if (selectedStorage.provider === 'uploadthing') {
     return uploadToUploadThing(file.buffer, file.originalname);
   }
 
-  if (activeProvider === 'cloudinary') {
+  if (selectedStorage.provider === 'cloudinary') {
     return uploadToCloudinary(file.buffer, file.originalname);
-  }
-
-  if (activeProvider.endsWith('_missing_config')) {
-    const error = new Error(`${activeProvider.replace('_missing_config', '')} storage is selected but environment variables are incomplete.`);
-    error.statusCode = 500;
-    throw error;
   }
 
   return uploadToLocalStorage(file.buffer, file.originalname);
@@ -169,15 +251,7 @@ export const deletePdfFile = async ({ publicId, storageProvider }) => {
   }
 
   if (publicId.startsWith('local:')) {
-    const fileName = publicId.replace('local:', '');
-    const targetPath = path.resolve(pdfUploadsRoot, fileName);
-
-    const relativePath = path.relative(pdfUploadsRoot, targetPath);
-
-    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
-      throw new Error('Invalid local file path.');
-    }
-
+    const targetPath = resolveLocalPdfPath(publicId);
     await fs.rm(targetPath, { force: true });
   }
 };

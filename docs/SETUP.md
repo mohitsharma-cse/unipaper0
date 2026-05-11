@@ -31,6 +31,7 @@ UploadThing storage:
 STORAGE_PROVIDER=uploadthing
 UPLOADTHING_TOKEN=your_uploadthing_token
 UPLOADTHING_APP_ID=your_uploadthing_app_id
+UPLOADTHING_STORAGE_LABEL=UploadThing
 ```
 
 Legacy Cloudinary fallback:
@@ -39,9 +40,10 @@ Legacy Cloudinary fallback:
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_STORAGE_LABEL=Cloudinary
 ```
 
-If UploadThing and Cloudinary are not configured, development uploads go to `backend/uploads/pdfs`.
+Admins can choose any configured storage destination in the Upload PDF form. If both UploadThing and Cloudinary are configured, both appear as options. If UploadThing and Cloudinary are not configured, development uploads go to `backend/uploads/pdfs`.
 
 ## Check Configuration
 

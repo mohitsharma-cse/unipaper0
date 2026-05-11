@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const semester = escapeHtml(file.semester || 'Semester');
             const category = escapeHtml(file.category || 'PDF');
             const folderPath = escapeHtml(file.folderId?.path || file.folderId?.name || 'Library');
-            const pdfUrl = escapeHtml(file.pdfUrl || '#');
+            const viewUrl = escapeHtml(file.viewUrl || (id ? `/api/files/${id}/pdf` : file.pdfUrl || '#'));
+            const downloadUrl = escapeHtml(file.downloadUrl || (id ? `/api/files/${id}/download` : file.pdfUrl || '#'));
             const downloads = Number(file.downloads || 0).toLocaleString();
             const tags = Array.isArray(file.tags) ? file.tags.slice(0, 5) : [];
 
@@ -114,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
                     </div>
                     <div class="library-card-actions">
-                        <button class="library-card-action view" type="button" data-file-url="${pdfUrl}">VIEW</button>
-                        <button class="library-card-action download" type="button" data-download-id="${id}" data-file-url="${pdfUrl}">DOWNLOAD</button>
+                        <button class="library-card-action view" type="button" data-file-url="${viewUrl}">VIEW</button>
+                        <button class="library-card-action download" type="button" data-download-id="${id}" data-file-url="${downloadUrl}">DOWNLOAD</button>
                     </div>
                 </article>
             `;

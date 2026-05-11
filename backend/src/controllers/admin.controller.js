@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { AuditLog } from '../models/AuditLog.js';
 import { Folder } from '../models/Folder.js';
 import { MaterialFile } from '../models/MaterialFile.js';
-import { deletePdfFile, uploadPdfFile } from '../services/storage.service.js';
+import { deletePdfFile, getPublicStorageOptions, uploadPdfFile } from '../services/storage.service.js';
 import { buildFolderTree, getDescendantFolderIds, refreshDescendantPaths } from '../services/folder.service.js';
 import { writeAuditLog } from '../services/audit.service.js';
 import { escapeRegExp } from '../utils/escapeRegExp.js';
@@ -160,7 +160,8 @@ export const deleteFolder = async (req, res) => {
 
   await Promise.all(files.map((file) => deletePdfFile({
     publicId: file.publicId,
-    storageProvider: file.storageProvider
+    storageProvider: file.storageProvider,
+    storageKey: file.storageKey
   })));
 
   await MaterialFile.deleteMany({ folderId: { $in: folderIds } });
@@ -192,6 +193,13 @@ export const getAdminFolders = async (req, res) => {
   });
 };
 
+export const getStorageOptions = async (req, res) => {
+  res.json({
+    success: true,
+    storageOptions: getPublicStorageOptions()
+  });
+};
+
 export const uploadFile = async (req, res) => {
   const folder = await Folder.findById(req.body.folderId);
 
@@ -202,7 +210,7 @@ export const uploadFile = async (req, res) => {
     });
   }
 
-  const storageResult = await uploadPdfFile(req.file);
+  const storageResult = await uploadPdfFile(req.file, req.body.storageKey);
 
   try {
     const file = await MaterialFile.create({
@@ -215,6 +223,7 @@ export const uploadFile = async (req, res) => {
       pdfUrl: storageResult.pdfUrl,
       publicId: storageResult.publicId,
       storageProvider: storageResult.storageProvider,
+      storageKey: storageResult.storageKey,
       originalFileName: req.file.originalname,
       fileSize: req.file.size,
       mimeType: req.file.mimetype,
@@ -346,7 +355,8 @@ export const deleteFile = async (req, res) => {
 
   await deletePdfFile({
     publicId: file.publicId,
-    storageProvider: file.storageProvider
+    storageProvider: file.storageProvider,
+    storageKey: file.storageKey
   });
 
   await file.deleteOne();

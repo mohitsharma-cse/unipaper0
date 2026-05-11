@@ -7,6 +7,7 @@ import {
   getAdminFolders,
   getAuditLogs,
   getStats,
+  getStorageOptions,
   listAdminFiles,
   updateFile,
   updateFolder,
@@ -42,7 +43,8 @@ const fileMetadataValidators = [
   body('semester').trim().isLength({ min: 1, max: 60 }).withMessage('Semester is required.'),
   body('subject').trim().isLength({ min: 1, max: 100 }).withMessage('Subject is required.'),
   body('category').isIn(['Notes', 'Assignments', 'PYQ', 'Syllabus']).withMessage('Invalid category.'),
-  body('folderId').isMongoId().withMessage('Valid folder ID is required.')
+  body('folderId').isMongoId().withMessage('Valid folder ID is required.'),
+  body('storageKey').optional({ nullable: true, checkFalsy: true }).trim().isLength({ min: 2, max: 80 }).withMessage('Invalid storage option.')
 ];
 
 const adminAccountValidators = [
@@ -68,6 +70,7 @@ const adminAccountUpdateValidators = [
 router.use(verifyToken);
 
 router.get('/stats', requirePermission('dashboard:read'), asyncHandler(getStats));
+router.get('/storage-options', requirePermission('files:write'), asyncHandler(getStorageOptions));
 
 router.get('/admins', requirePermission('admins:read'), asyncHandler(listAdmins));
 router.post('/admins', requirePermission('admins:write'), adminAccountValidators, validateRequest, asyncHandler(createAdmin));

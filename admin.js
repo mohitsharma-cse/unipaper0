@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminTeamList = document.getElementById('admin-team-list');
     let activeReviewStatus = '';
     let currentAdmin = null;
+    let storageOptions = [];
     let permissionCatalog = [
         'dashboard:read',
         'folders:read',
@@ -127,6 +128,25 @@ document.addEventListener('DOMContentLoaded', () => {
             method,
             body: JSON.stringify(body)
         });
+    }
+
+    function storageLabel(key, provider) {
+        const option = storageOptions.find((item) => item.key === key || item.provider === provider);
+        return option ? option.label : (key || provider || 'local');
+    }
+
+    function renderStorageOptions() {
+        const storageSelect = document.getElementById('file-storage');
+        if (!storageSelect) return;
+
+        if (!storageOptions.length) {
+            storageSelect.innerHTML = '<option value="">No storage configured</option>';
+            return;
+        }
+
+        storageSelect.innerHTML = storageOptions.map((option) => `
+            <option value="${escapeHtml(option.key)}">${escapeHtml(option.label)} (${escapeHtml(option.provider)})</option>
+        `).join('');
     }
 
     function showLoggedIn() {
@@ -359,11 +379,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="admin-list-title">${escapeHtml(file.title)}</div>
                         <div class="admin-list-meta">
                             ${escapeHtml(file.category)} / ${escapeHtml(file.subject)} / ${escapeHtml(file.semester)}<br>
-                            ${escapeHtml(file.folderId?.path || 'No folder')} / ${Number(file.downloads || 0).toLocaleString()} downloads / ${formatDate(file.createdAt)}
+                            ${escapeHtml(file.folderId?.path || 'No folder')} / ${escapeHtml(storageLabel(file.storageKey, file.storageProvider))} / ${Number(file.downloads || 0).toLocaleString()} downloads / ${formatDate(file.createdAt)}
                         </div>
                     </div>
                     <div class="admin-mini-actions">
-                        <button class="admin-mini-btn ok" type="button" data-open-url="${escapeHtml(file.pdfUrl)}">VIEW</button>
+                        <button class="admin-mini-btn ok" type="button" data-open-url="${escapeHtml(file.viewUrl || `/api/files/${file._id}/pdf`)}">VIEW</button>
                         ${canRename ? `<button class="admin-mini-btn yellow" type="button" data-rename-file="${escapeHtml(file._id)}" data-file-title="${escapeHtml(file.title)}">RENAME</button>` : ''}
                         ${canDelete ? `<button class="admin-mini-btn warn" type="button" data-delete-file="${escapeHtml(file._id)}">DELETE</button>` : ''}
                     </div>
@@ -460,6 +480,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFiles(data.files);
     }
 
+    async function loadStorageOptions() {
+        const data = await apiGet('/api/admin/storage-options');
+        storageOptions = data.storageOptions || [];
+        renderStorageOptions();
+    }
+
     async function loadReviews() {
         const params = { limit: 50 };
         if (activeReviewStatus) params.status = activeReviewStatus;
@@ -482,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (hasPermission('dashboard:read')) tasks.push(loadStats());
             if (hasPermission('folders:read')) tasks.push(loadFolders());
             if (hasPermission('files:read')) tasks.push(loadFiles());
+            if (hasPermission('files:write')) tasks.push(loadStorageOptions());
             if (hasPermission('reviews:read')) tasks.push(loadReviews());
             if (hasPermission('admins:read')) tasks.push(loadAdmins());
             await Promise.all(tasks);
@@ -664,10 +691,11 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('subject', document.getElementById('file-subject').value.trim());
         formData.append('category', document.getElementById('file-category').value);
         formData.append('folderId', document.getElementById('file-folder').value);
+        formData.append('storageKey', document.getElementById('file-storage')?.value || '');
         formData.append('tags', document.getElementById('file-tags').value.trim());
         formData.append('pdf', pdf);
 
-        setStatus('Uploading PDF to UploadThing...');
+        setStatus(`Uploading PDF to ${storageLabel(document.getElementById('file-storage')?.value)}...`);
         try {
             await apiRequest('/api/admin/files', { method: 'POST', body: formData });
             event.target.reset();
@@ -677,6 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = '';
                 renderSelectLevel(window.adminFolderTree, 0, container);
             }
+            renderStorageOptions();
             
             await Promise.all([loadFiles(), loadStats()]);
             setStatus('PDF uploaded and saved in MongoDB.', 'ok');

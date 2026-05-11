@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import {
   apiDocs,
+  downloadFilePdf,
   getFileById,
   getFolderFiles,
   getFolders,
   health,
   listFiles,
+  previewFilePdf,
   readiness,
   registerDownload,
   searchFiles
@@ -24,6 +26,8 @@ router.get('/folders', asyncHandler(getFolders));
 router.get('/folders/:id/files', asyncHandler(getFolderFiles));
 router.get('/files', asyncHandler(listFiles));
 router.get('/files/search', asyncHandler(searchFiles));
+router.get('/files/:id/pdf', asyncHandler(previewFilePdf));
+router.get('/files/:id/download', asyncHandler(downloadFilePdf));
 router.get('/files/:id', asyncHandler(getFileById));
 router.post('/files/:id/download', asyncHandler(registerDownload));
 router.get('/reviews', asyncHandler(listApprovedReviews));

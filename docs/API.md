@@ -23,7 +23,9 @@ http://localhost:5000
 | GET | `/api/files` | Lists public files with optional filters |
 | GET | `/api/files/search?q=dbms` | Searches files by title, subject, course, semester, category, and tags |
 | GET | `/api/files/:id` | Returns one file |
-| POST | `/api/files/:id/download` | Increments download count and returns PDF URL |
+| GET | `/api/files/:id/pdf` | Streams the PDF inline from whichever storage holds it |
+| GET | `/api/files/:id/download` | Streams the PDF as a download from whichever storage holds it |
+| POST | `/api/files/:id/download` | Increments download count and returns API PDF URLs |
 
 Supported file query filters:
 
@@ -61,6 +63,7 @@ All admin routes require the JWT cookie from login.
 | Method | Endpoint | Description |
 | --- | --- | --- |
 | GET | `/api/admin/stats` | Dashboard stats |
+| GET | `/api/admin/storage-options` | Lists safe storage destinations admin can choose during upload |
 | GET | `/api/admin/folders` | Flat and nested folder data |
 | POST | `/api/admin/folders` | Create folder |
 | PUT | `/api/admin/folders/:id` | Rename/update folder |
@@ -93,4 +96,3 @@ category: Notes
 folderId: mongodb-folder-id
 tags: dbms, normalization, unit 1
 ```
-

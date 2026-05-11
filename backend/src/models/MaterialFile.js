@@ -45,6 +45,11 @@ const materialFileSchema = new mongoose.Schema(
       enum: ['cloudinary', 'uploadthing', 'local'],
       default: 'local'
     },
+    storageKey: {
+      type: String,
+      default: 'local',
+      trim: true
+    },
     originalFileName: {
       type: String,
       trim: true
