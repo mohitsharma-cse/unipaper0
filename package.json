@@ -9,10 +9,14 @@
   ],
   "scripts": {
     "dev:backend": "npm run dev --workspace backend",
+    "start": "node backend/src/server.js",
     "start:backend": "npm run start --workspace backend",
     "seed:admin": "npm run seed --workspace backend",
     "seed:folders": "npm run seed:folders --workspace backend",
     "doctor": "npm run doctor --workspace backend",
     "serve:site": "node site-server.js"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
