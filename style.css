@@ -2395,9 +2395,9 @@ body {
         overflow: hidden !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important;
+        justify-content: space-evenly !important;
         align-items: center !important;
-        padding-top: 10% !important;
+        padding: 6% 0 4% 0 !important;
     }
     /* 
     =========================================================
@@ -2420,87 +2420,96 @@ body {
         height: 1px !important;
     }
 
-    /* ── 6. Monitor content — fill the phone screen ── */
+    /* ── 6. Monitor content — fill the phone screen with good spacing ── */
     .monitor-content {
-        width: 95% !important;
+        width: 92% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         gap: 0 !important;
-        padding: 0 4px !important;
-        overflow: hidden !important;
+        padding: 0 6px !important;
+        overflow: visible !important;
     }
 
     /* ── 7. Greeting ── */
     .monitor-greeting {
-        font-size: clamp(6px, 1.8vw, 10px) !important;
-        margin-bottom: 3% !important;
-        letter-spacing: 0 !important;
+        font-size: clamp(7px, 2vw, 11px) !important;
+        margin-bottom: 8px !important;
+        letter-spacing: 0.5px !important;
+        text-align: center !important;
     }
 
     /* ── 8. Main Title ── */
     .main-title {
-        font-size: clamp(14px, 4.5vw, 20px) !important;
-        line-height: 1.25 !important;
-        margin-bottom: 3% !important;
+        font-size: clamp(13px, 4.2vw, 18px) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 6px !important;
+        text-align: center !important;
     }
 
     /* ── 9. Subtitle ── */
     .subtitle {
-        font-size: clamp(9px, 2.5vw, 13px) !important;
-        margin-bottom: 4% !important;
-        line-height: 1.35 !important;
+        font-size: clamp(8px, 2.2vw, 12px) !important;
+        margin-bottom: 8px !important;
+        line-height: 1.45 !important;
+        text-align: center !important;
     }
 
     /* ── 10. Search box ── */
     .search-box {
-        width: 98% !important;
-        margin-bottom: 3% !important;
+        width: 95% !important;
+        margin-bottom: 10px !important;
     }
 
-    /* Stack the input + button vertically so button is not cut off */
+    /* Stack the input + button vertically */
     .search-input-wrapper {
         flex-direction: column !important;
         align-items: stretch !important;
-        padding: 6px !important;
-        border-radius: 8px !important;
-        gap: 6px !important;
+        padding: 8px !important;
+        border-radius: 10px !important;
+        gap: 8px !important;
     }
 
     .search-icon-left {
-        display: none !important; /* Hide icon when stacked */
+        display: none !important;
     }
 
     .pixel-input {
         font-size: clamp(11px, 3vw, 14px) !important;
-        padding: 8px 10px !important;
+        padding: 10px 12px !important;
         width: 100% !important;
-        border-radius: 4px !important;
+        border-radius: 5px !important;
     }
 
     .search-action-btn {
-        font-size: clamp(9px, 2.5vw, 12px) !important;
-        padding: 8px 12px !important;
+        font-size: clamp(10px, 2.5vw, 13px) !important;
+        padding: 10px 14px !important;
         width: 100% !important;
         justify-content: center !important;
-        border-radius: 4px !important;
+        border-radius: 5px !important;
+        letter-spacing: 1px !important;
     }
 
     /* ── 11. Tags ── */
     .tags-container {
-        gap: 4px !important;
-        margin-bottom: 3% !important;
+        gap: 6px !important;
+        margin-bottom: 10px !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
     }
 
     .monitor-tag {
-        font-size: clamp(7px, 2vw, 10px) !important;
-        padding: 4px 8px !important;
-        gap: 3px !important;
-        border-radius: 5px !important;
+        font-size: clamp(8px, 2.2vw, 11px) !important;
+        padding: 6px 10px !important;
+        gap: 4px !important;
+        border-radius: 6px !important;
     }
 
     /* ── 12. Footer text ── */
     .monitor-footer-text {
         font-size: clamp(9px, 2.5vw, 12px) !important;
+        margin-top: 4px !important;
+        text-align: center !important;
     }
 
     /* ── 13. Search suggestions — hide until user types ── */
