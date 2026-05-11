@@ -205,7 +205,7 @@ body {
 
 /* â•â•â•â•â•â•â•â•â•â•â•â• HERO SCENE (THE PERFECT SCALE ARCHITECTURE) â•â•â•â•â•â•â•â•â•â•â•â• */
 .main-content {
-    margin-top: 60px;
+    margin-top: 0;
     /* Offset fixed navbar */
 }
 
@@ -219,9 +219,9 @@ body {
 
 .desk-container {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     /* This exact image aspect ratio locks the physical CRT monitor geometry to the container! */
     aspect-ratio: 1053 / 533;
 }
@@ -2514,7 +2514,11 @@ body {
 
     /* ── 13. Search suggestions — hide until user types ── */
     .search-suggestions { 
-        display: none !important; /* shown via JS when user types */ 
+        display: none; /* shown via JS when user types */ 
+        left: 0 !important;
+        width: 100% !important;
+        max-height: min(260px, 42vh) !important;
+        overflow-y: auto !important;
     }
     /* Scaling for when JS shows them */
     .suggestion-header {
@@ -2558,6 +2562,35 @@ body {
     .main-title       { font-size: clamp(7px, 2.5vw, 14px) !important; }
     .subtitle         { font-size: 7px !important; }
     .monitor-tag      { font-size: 5px !important; padding: 3px 5px !important; }
-    .search-action-btn { font-size: 5px !important; padding: 5px 6px !important; }
-    .pixel-input       { font-size: 8px !important; }
+    .search-box       { width: 100% !important; }
+    .search-input-wrapper { gap: 6px !important; padding: 6px !important; }
+    .search-action-btn {
+        font-size: clamp(8px, 2.4vw, 11px) !important;
+        padding: 8px 10px !important;
+        min-height: 32px !important;
+    }
+    .pixel-input {
+        font-size: clamp(10px, 2.8vw, 12px) !important;
+        min-height: 34px !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .library-card-actions,
+    .admin-mini-actions,
+    .admin-actions {
+        width: 100%;
+    }
+
+    .library-card-action,
+    .admin-mini-btn,
+    .admin-actions .pixel-btn {
+        min-height: 40px;
+    }
+
+    .admin-mini-actions .admin-input,
+    .admin-mini-actions .admin-select,
+    .admin-mini-actions .admin-mini-btn {
+        width: 100%;
+    }
 }

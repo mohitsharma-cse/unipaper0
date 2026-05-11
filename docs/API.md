@@ -95,4 +95,7 @@ subject: DBMS
 category: Notes
 folderId: mongodb-folder-id
 tags: dbms, normalization, unit 1
+storageKey: uploadthing-1
 ```
+
+`storageKey` must match one option returned by `GET /api/admin/storage-options`, such as `uploadthing-1` or `uploadthing-2`.

@@ -195,11 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (viewButton) {
                 const pdfUrl = viewButton.dataset.fileUrl;
-                // Option A: Try direct Cloudinary raw URL in a new tab (works for raw resource_type)
-                // Option B: Fallback to Google Docs Viewer for cross-browser compatibility
-                const viewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=false`;
                 const link = document.createElement('a');
-                link.href = pdfUrl; // Direct first â€” works when resource_type is 'raw'
+                link.href = pdfUrl;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
                 document.body.appendChild(link);

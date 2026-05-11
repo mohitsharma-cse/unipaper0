@@ -17,6 +17,6 @@
     "serve:site": "node site-server.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

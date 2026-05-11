@@ -12,7 +12,6 @@ Create environment files:
 
 ```powershell
 Copy-Item backend\.env.example backend\.env
-Copy-Item frontend\.env.example frontend\.env
 ```
 
 Fill `backend/.env`:
@@ -74,27 +73,30 @@ npm run dev:backend
 Terminal 2:
 
 ```bash
-npm run dev:frontend
+npm run serve:site
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:5173
+http://127.0.0.1:8080
 ```
 
 Admin:
 
 ```text
-http://127.0.0.1:5173/admin/login
+http://127.0.0.1:8080/admin
 ```
 
 ## Production Checklist
 
-- Set all backend environment variables on Render/Railway.
-- Set `VITE_API_URL` on Vercel.
+- On Azure App Service, use Node 20+ and startup command `npm start`.
+- Set `NODE_ENV=production`.
+- Set `CLIENT_URL` and `API_PUBLIC_URL` to the Azure HTTPS URL, for example `https://your-app.azurewebsites.net`.
+- Set `COOKIE_SAME_SITE=none` and keep cookies secure over Azure HTTPS.
+- Add both UploadThing accounts as app settings: `UPLOADTHING_TOKEN` and `UPLOADTHING_2_TOKEN`, plus their labels and app IDs.
 - Use UploadThing for production file storage.
-- Set `CLIENT_URL` to the deployed frontend URL.
 - Use a strong JWT secret.
-- Keep `.env` out of GitHub.
+- Keep `.env` out of GitHub and put secrets in Azure App Service Configuration instead.
+- Set the Azure health check path to `/api/ready`.
 - Run one full flow after deployment: login, create folder, upload PDF, public search, preview, download, delete.

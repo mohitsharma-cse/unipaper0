@@ -1,6 +1,5 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -11,8 +10,6 @@ import authRoutes from './routes/auth.routes.js';
 import publicRoutes from './routes/public.routes.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 import { getUploadsRoot } from './services/storage.service.js';
-
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);

@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { hasUploadThingConfig } from '../config/uploadthing.js';
+import { getPublicStorageOptions } from '../services/storage.service.js';
 
 dotenv.config();
 
@@ -11,17 +11,17 @@ const isRealValue = (value) => Boolean(
 );
 
 const preferredStorage = (process.env.STORAGE_PROVIDER || 'auto').toLowerCase();
-const hasRealUploadThingConfig = hasUploadThingConfig();
+const publicStorageOptions = getPublicStorageOptions();
+const uploadThingOptions = publicStorageOptions.filter((option) => option.provider === 'uploadthing');
+const hasRealUploadThingConfig = uploadThingOptions.length > 0;
 const hasRealCloudinaryConfig = Boolean(
   isRealValue(process.env.CLOUDINARY_CLOUD_NAME)
     && isRealValue(process.env.CLOUDINARY_API_KEY)
     && isRealValue(process.env.CLOUDINARY_API_SECRET)
 );
 const uploadThingRequired = preferredStorage === 'uploadthing';
-const cloudinaryRequired = preferredStorage === 'cloudinary';
 const storageReady = preferredStorage === 'auto'
   || (preferredStorage === 'uploadthing' && hasRealUploadThingConfig)
-  || (preferredStorage === 'cloudinary' && hasRealCloudinaryConfig)
   || preferredStorage === 'local';
 
 const uploadThingFields = [
@@ -30,9 +30,8 @@ const uploadThingFields = [
 
 const activeStorage = (() => {
   if (preferredStorage === 'uploadthing') return hasRealUploadThingConfig ? 'uploadthing' : 'uploadthing_missing_config';
-  if (preferredStorage === 'cloudinary') return hasRealCloudinaryConfig ? 'cloudinary' : 'cloudinary_missing_config';
+  if (preferredStorage === 'cloudinary') return 'cloudinary_disabled_for_new_uploads';
   if (hasRealUploadThingConfig) return 'uploadthing';
-  if (hasRealCloudinaryConfig) return 'cloudinary';
   return 'local';
 })();
 
@@ -42,7 +41,7 @@ const checks = [
   ['ADMIN_EMAIL', isRealValue(process.env.ADMIN_EMAIL)],
   ['ADMIN_PASSWORD length >= 8', Boolean(isRealValue(process.env.ADMIN_PASSWORD) && process.env.ADMIN_PASSWORD.length >= 8)],
   ['CLIENT_URL', isRealValue(process.env.CLIENT_URL)],
-  ['STORAGE_PROVIDER value', ['auto', 'uploadthing', 'cloudinary', 'local'].includes(preferredStorage)],
+  ['STORAGE_PROVIDER value', ['auto', 'uploadthing', 'local'].includes(preferredStorage)],
   ['Selected storage config', storageReady]
 ];
 
@@ -62,10 +61,13 @@ if (uploadThingRequired && !hasRealUploadThingConfig) {
 
 console.log(`${hasRealCloudinaryConfig ? 'OK  ' : 'INFO'} Cloudinary ${hasRealCloudinaryConfig ? 'configured as legacy fallback' : 'not configured'}`);
 console.log(`INFO Active storage mode: ${activeStorage}`);
+console.log(`INFO Admin upload choices: ${publicStorageOptions.map((option) => option.label).join(', ')}`);
+if (uploadThingOptions.length) {
+  console.log(`INFO UploadThing destinations: ${uploadThingOptions.map((option) => `${option.label} (${option.key})`).join(', ')}`);
+}
 
 const failed = checks.some(([, ok]) => !ok)
-  || (uploadThingRequired && !hasRealUploadThingConfig)
-  || (cloudinaryRequired && !hasRealCloudinaryConfig);
+  || (uploadThingRequired && !hasRealUploadThingConfig);
 
 if (failed) {
   console.log('\nFix missing or placeholder values in backend/.env before running the backend.');

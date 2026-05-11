@@ -23,26 +23,27 @@ const getPreferredStorageProvider = () => (process.env.STORAGE_PROVIDER || 'auto
 export const getConfiguredStorageOptions = () => {
   const options = [];
 
-  for (let index = 1; index <= 10; index += 1) {
-    const token = process.env[`UPLOADTHING_${index}_TOKEN`];
-
-    if (hasUploadThingToken(token)) {
-      options.push({
-        key: process.env[`UPLOADTHING_${index}_KEY`] || `uploadthing-${index}`,
-        label: process.env[`UPLOADTHING_${index}_LABEL`] || `UploadThing ${index}`,
-        provider: 'uploadthing',
-        token
-      });
-    }
-  }
-
-  if (hasUploadThingConfig() && !options.some((option) => option.key === 'uploadthing')) {
+  if (hasUploadThingConfig()) {
     options.push({
       key: process.env.UPLOADTHING_STORAGE_KEY || 'uploadthing-1',
       label: process.env.UPLOADTHING_STORAGE_LABEL || 'UploadThing 1',
       provider: 'uploadthing',
       token: process.env.UPLOADTHING_TOKEN
     });
+  }
+
+  for (let index = 1; index <= 10; index += 1) {
+    const token = process.env[`UPLOADTHING_${index}_TOKEN`];
+    const key = process.env[`UPLOADTHING_${index}_KEY`] || `uploadthing-${index}`;
+
+    if (hasUploadThingToken(token) && !options.some((option) => option.key === key)) {
+      options.push({
+        key,
+        label: process.env[`UPLOADTHING_${index}_LABEL`] || `UploadThing ${index}`,
+        provider: 'uploadthing',
+        token
+      });
+    }
   }
 
   if (process.env.ENABLE_LOCAL_STORAGE_OPTION === 'true' || !options.length) {
@@ -82,6 +83,12 @@ const resolveStorageOption = (storageKey) => {
   if (activeProvider.endsWith('_missing_config')) {
     const error = new Error(`${activeProvider.replace('_missing_config', '')} storage is selected but environment variables are incomplete.`);
     error.statusCode = 500;
+    throw error;
+  }
+
+  if (activeProvider === 'cloudinary_disabled') {
+    const error = new Error('Cloudinary is disabled for new uploads. Choose an UploadThing storage destination.');
+    error.statusCode = 400;
     throw error;
   }
 

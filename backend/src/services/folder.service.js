@@ -1,4 +1,5 @@
 import { Folder } from '../models/Folder.js';
+import { MaterialFile } from '../models/MaterialFile.js';
 
 export const buildFolderTree = (folders) => {
   const folderMap = new Map();
@@ -53,6 +54,18 @@ export const refreshDescendantPaths = async (parentFolder) => {
   await Promise.all(children.map(async (child) => {
     child.path = `${parentFolder.path}/${child.name}`;
     await child.save();
+
+    // Update metadata for files in this specific folder
+    const updates = {};
+    if (child.type === 'course') updates.course = child.name;
+    if (child.type === 'semester') updates.semester = child.name;
+    if (child.type === 'subject') updates.subject = child.name;
+    if (child.type === 'category') updates.category = child.name;
+
+    if (Object.keys(updates).length > 0) {
+      await MaterialFile.updateMany({ folderId: child._id }, { $set: updates });
+    }
+
     await refreshDescendantPaths(child);
   }));
 };

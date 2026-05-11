@@ -13,15 +13,15 @@ const parseTags = (tags) => {
   }
 
   if (Array.isArray(tags)) {
-    return tags.map((tag) => String(tag).trim()).filter(Boolean);
+    return tags.map((tag) => String(tag).trim()).filter(Boolean);      
   }
 
   try {
     const parsed = JSON.parse(tags);
     if (Array.isArray(parsed)) {
-      return parsed.map((tag) => String(tag).trim()).filter(Boolean);
+      return parsed.map((tag) => String(tag).trim()).filter(Boolean);  
     }
-    // JSON.parse succeeded but returned a primitive — treat as single tag
+    // JSON.parse succeeded but returned a primitive â€” treat as single tag
     return [String(parsed).trim()].filter(Boolean);
   } catch (error) {
     // Plain comma-separated string like "dbms, notes, unit 1"
@@ -48,7 +48,7 @@ export const getStats = async (req, res) => {
     Folder.countDocuments(),
     MaterialFile.aggregate([
       { $match: { isActive: true } },
-      { $group: { _id: null, downloads: { $sum: '$downloads' } } }
+      { $group: { _id: null, downloads: { $sum: '$downloads' } } }     
     ]),
     MaterialFile.countDocuments({ createdAt: { $gte: startOfMonth }, isActive: true }),
     MaterialFile.aggregate([
@@ -90,7 +90,7 @@ export const createFolder = async (req, res) => {
     type,
     parent: parentFolder?._id || null,
     icon: icon || '<i class="fa-solid fa-folder"></i>',
-    path: parentFolder ? `${parentFolder.path}/${name}` : name,
+    path: parentFolder ? `${parentFolder.path}/${name}` : name,        
     createdBy: req.user._id
   });
 
@@ -129,6 +129,20 @@ export const updateFolder = async (req, res) => {
   const parentFolder = folder.parent ? await Folder.findById(folder.parent) : null;
   folder.path = parentFolder ? `${parentFolder.path}/${folder.name}` : folder.name;
   await folder.save();
+
+  // Update metadata for files in THIS folder if it was renamed
+  if (req.body.name) {
+    const fileUpdates = {};
+    if (folder.type === 'course') fileUpdates.course = folder.name;
+    if (folder.type === 'semester') fileUpdates.semester = folder.name;
+    if (folder.type === 'subject') fileUpdates.subject = folder.name;
+    if (folder.type === 'category') fileUpdates.category = folder.name;
+
+    if (Object.keys(fileUpdates).length > 0) {
+      await MaterialFile.updateMany({ folderId: folder._id }, { $set: fileUpdates });
+    }
+  }
+
   await refreshDescendantPaths(folder);
 
   await writeAuditLog({
@@ -164,7 +178,7 @@ export const deleteFolder = async (req, res) => {
     storageKey: file.storageKey
   })));
 
-  await MaterialFile.deleteMany({ folderId: { $in: folderIds } });
+  await MaterialFile.deleteMany({ folderId: { $in: folderIds } });     
   await Folder.deleteMany({ _id: { $in: folderIds } });
 
   await writeAuditLog({
