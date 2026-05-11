@@ -2356,16 +2356,15 @@ body {
         display: block !important;
         width: 100%;
         height: auto;
-        max-height: 100vh;
-        object-fit: contain;
+        object-fit: cover;
     }
 
     /* ── 2. Reset desk-container to match mobile-bg aspect ratio ── */
     /* mobile-bg.png is portrait: ~473×1024 px → ratio ≈ 473/1024 */
     .desk-container {
         aspect-ratio: 473 / 1024 !important;
-        width: auto !important;
-        height: 100vh !important;
+        width: 100vw !important; /* Increased width to zoom in */
+        height: auto !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
