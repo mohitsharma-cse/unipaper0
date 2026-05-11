@@ -1,9 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
-    // Update placeholder for mobile view
-    const heroSearchInput = document.getElementById('hero-search-input');
-    if (heroSearchInput && window.innerWidth <= 480) {
-        heroSearchInput.placeholder = "Search for subjects, courses, or resources... (e.g., 'Introduction to Computer Science')";
-    }
+document.addEventListener("DOMContentLoaded", () => {
 
     // --------------------------------------------------------
     // UNIPAPER API WIRING
@@ -174,7 +169,7 @@
                 try {
                     const result = await apiPost(`/api/files/${fileId}/download`);
                     const finalUrl = result.pdfUrl || fallbackUrl;
-                    // Ã¢Å“â€¦ Anchor click Ã¢â‚¬â€ NEVER blocked by popup blockers (unlike window.open inside async)
+                    // âœ… Anchor click â€” NEVER blocked by popup blockers (unlike window.open inside async)
                     const link = document.createElement('a');
                     link.href = finalUrl;
                     link.download = fileName + '.pdf';
@@ -203,7 +198,7 @@
                 // Option B: Fallback to Google Docs Viewer for cross-browser compatibility
                 const viewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=false`;
                 const link = document.createElement('a');
-                link.href = pdfUrl; // Direct first Ã¢â‚¬â€ works when resource_type is 'raw'
+                link.href = pdfUrl; // Direct first â€” works when resource_type is 'raw'
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
                 document.body.appendChild(link);
@@ -387,7 +382,7 @@
     }
 
     // --------------------------------------------------------
-    // STATS BAR Ã¢â‚¬â€ Live counts from database
+    // STATS BAR â€” Live counts from database
     // --------------------------------------------------------
     async function loadLiveStats() {
         try {
@@ -598,10 +593,10 @@
             <div class="review-card" id="review-card-${i}" tabindex="0" role="article">
                 <div class="review-card-head">
                     <img class="review-card-photo" src="https://i.pravatar.cc/120?img=${15 + i}" alt="Avatar of ${r.name}">
-                    <div class="review-card-role badge">âœ“ APPROVED STUDENT REVIEW</div>
+                    <div class="review-card-role badge">✓ APPROVED STUDENT REVIEW</div>
                 </div>
                 <p class="review-card-quote">"${r.quote}"</p>
-                <p class="review-card-meta">â€” <span class="author-name">${r.name}</span>, <span class="author-role">${r.role}</span></p>
+                <p class="review-card-meta">— <span class="author-name">${r.name}</span>, <span class="author-role">${r.role}</span></p>
             </div>
         `).join('');
         updateCarousel();
@@ -761,8 +756,8 @@
             reviewStepIdx = 0;
             Object.keys(reviewAnswers).forEach(k => delete reviewAnswers[k]);
             if (terminalLog) terminalLog.innerHTML = '';
-            addTerminalLine('SYS.REVIEW.EXE Ã¢â‚¬â€ UniPapers Review System v1.0', 'terminal-header');
-            addTerminalLine('Ã¢â€â‚¬'.repeat(42), 'terminal-divider');
+            addTerminalLine('SYS.REVIEW.EXE â€” UniPapers Review System v1.0', 'terminal-header');
+            addTerminalLine('â”€'.repeat(42), 'terminal-divider');
             showNextPrompt();
             if (terminalActions) terminalActions.hidden = true;
         });
@@ -783,8 +778,8 @@
                 if (reviewStepIdx < reviewSteps.length) {
                     showNextPrompt();
                 } else {
-                    addTerminalLine('Ã¢â€â‚¬'.repeat(42), 'terminal-divider');
-                    addTerminalLine('Ã¢Å“â€œ Review ready to submit. Press DONE to send.', 'terminal-success');
+                    addTerminalLine('â”€'.repeat(42), 'terminal-divider');
+                    addTerminalLine('âœ“ Review ready to submit. Press DONE to send.', 'terminal-success');
                     if (terminalActions) terminalActions.hidden = false;
                     terminalInput.disabled = true;
                 }
@@ -798,8 +793,8 @@
         if (terminalLog) terminalLog.innerHTML = '';
         if (terminalInput) { terminalInput.disabled = false; terminalInput.value = ''; }
         if (terminalActions) terminalActions.hidden = true;
-        addTerminalLine('SYS.REVIEW.EXE Ã¢â‚¬â€ UniPapers Review System v1.0', 'terminal-header');
-        addTerminalLine('Ã¢â€â‚¬'.repeat(42), 'terminal-divider');
+        addTerminalLine('SYS.REVIEW.EXE â€” UniPapers Review System v1.0', 'terminal-header');
+        addTerminalLine('â”€'.repeat(42), 'terminal-divider');
         showNextPrompt();
     });
 
@@ -1014,7 +1009,7 @@
     }
 
     // --------------------------------------------------------
-    // SHUFFLE TEXT ANIMATION Ã¢â‚¬â€ FIXED VERSION
+    // SHUFFLE TEXT ANIMATION â€” FIXED VERSION
     // --------------------------------------------------------
     function initShuffleText() { return;
         const el = document.querySelector(".main-title");
@@ -1106,7 +1101,7 @@
     initShuffleText();
 
     // --------------------------------------------------------
-    // SHAPE GRID BACKGROUND Ã¢â‚¬â€ ENHANCED
+    // SHAPE GRID BACKGROUND â€” ENHANCED
     // --------------------------------------------------------
     function initShapeGrid() {
         const canvas = document.getElementById("shapegrid-canvas");

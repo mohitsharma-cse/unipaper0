@@ -62,8 +62,8 @@
             </div>
         </div>
         <div class="nav-right">
-            <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
-            <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn">Ã°Å¸â€Â</button>
+            <button class="icon-btn">Ã°Å¸â€â€</button>
             <div class="avatar">
                 <img src="https://ui-avatars.com/api/?name=User&background=333&color=fff" alt="User Profile">
             </div>
@@ -75,50 +75,61 @@
         <!-- HERO SECTION: CRT SCENE -->
         <section class="hero-section" id="hero" data-spark-color="#00ffcc">
             <div class="desk-container">
-                <img src="bg.png" alt="Retro Desk Background" class="bg-layer desktop-bg" id="bg-img">
-                <img src="mobile-bg.png" alt="Retro Mobile Background" class="bg-layer mobile-bg" id="mobile-bg-img" style="display: none;">
+                <img src="bg.png" alt="Retro Desk Background" class="bg-layer" id="bg-img">
                 
                 <div class="crt-screen" id="crt-overlay">
                     <canvas id="shapegrid-canvas" class="shapegrid-canvas"></canvas>
                     <div class="scanlines"></div>
                     <div class="crt-flicker"></div>
-                    <div class="monitor-content">
-                        <h1 class="main-title">UniPapers is your centralized<br>university resource library.</h1>
+                               <div class="monitor-content">
+                        <div class="monitor-greeting"><span class="emoji"><i class="fa-solid fa-ghost"></i></span> WELCOME TO YOUR STUDY HUB <span class="emoji"><i class="fa-solid fa-ghost"></i></span></div>
+                        <h1 class="main-title"><span class="stars"><i class="fa-solid fa-star"></i></span> Learn. Explore. Excel. <span class="stars"><i class="fa-solid fa-star"></i></span></h1>
                         
-                        <p class="subtitle">Find your subject resources instantly! Use the search box below to<br>explore available textbooks, notes, and study guides.</p>
+                        <p class="subtitle">Find the best resources, notes, and guides<br>to <span class="highlight-text">level up your knowledge</span>.</p>
                         
                         <div class="search-box">
-                            <textarea rows="2" placeholder="Search for subjects, courses, or resources...&#10;(e.g., 'Introduction to Computer Science')" class="pixel-input" id="hero-search-input"></textarea>
+                            <div class="search-input-wrapper">
+                                <span class="search-icon-left"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <input type="text" placeholder="Search for subjects, courses, or resources..." class="pixel-input" id="hero-search-input" autocomplete="off">
+                                <button class="search-action-btn" id="search-btn">
+                                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> SEARCH
+                                </button>
+                            </div>
+                            
+                            <div class="search-suggestions" id="search-suggestions" style="display:none;">
+                                <div class="suggestion-header">
+                                    <span class="suggestion-icon-s"><i class="fa-solid fa-magnifying-glass"></i></span> TRY SEARCHING FOR
+                                </div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-book-open"></i></span> Introduction to Computer Science</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-code"></i></span> Data Structures and Algorithms</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-atom"></i></span> Physics - Mechanics</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-chart-line"></i></span> Calculus - Differential Equations</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-laptop-code"></i></span> Web Development Basics</div>
+                                <div class="suggestion-footer">
+                                    <span class="sugg-icon-tip"><i class="fa-solid fa-lightbulb"></i></span> Tip: Use keywords like <span class="tip-highlight">"notes"</span>, <span class="tip-highlight">"guide"</span>, or <span class="tip-highlight">"course"</span><br>for better results.
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="tags-row">
-                            <span class="tag">CompSci</span>
-                            <span class="tag">History</span>
-                            <span class="tag">Physics</span>
-                            <span class="tag">Literature</span>
+                        <div class="tags-container">
+                            <button class="monitor-tag active"><span class="tag-icon"><i class="fa-solid fa-layer-group"></i></span> All</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-desktop"></i></span> Computer Science</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-calculator"></i></span> Mathematics</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-atom"></i></span> Physics</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-book"></i></span> Literature</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-gear"></i></span> Engineering</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-ellipsis"></i></span> More</button>
                         </div>
 
-                        <button class="search-action-btn" id="search-btn">
-                            <span class="search-icon">🔍</span> SEARCH
-                        </button>
+                        <div class="monitor-footer-text">
+                            <i class="fa-solid fa-rocket"></i> Your next <span class="highlight-text">breakthrough</span> starts here.
+                        </div>
                     </div>          </div>
                 </div>
             </div>
         </section>
 
-        <!-- MOBILE-ONLY: Fun exam season banner -->
-        <section class="mobile-fun-banner">
-            <div class="fun-ticker">
-                <span class="fun-item"><i class="fa-solid fa-face-tired"></i> When the exam says "Explain briefly" but you write a novel...</span>
-                <span class="fun-item"><i class="fa-solid fa-mug-hot"></i> Coffee level: IV drip during finals week</span>
-                <span class="fun-item"><i class="fa-solid fa-brain"></i> Brain.exe has stopped working</span>
-                <span class="fun-item"><i class="fa-solid fa-bed"></i> Sleep schedule during exams: 404 Not Found</span>
-                <span class="fun-item"><i class="fa-solid fa-fire"></i> "I'll start studying tomorrow" - You, since last semester</span>
-                <span class="fun-item"><i class="fa-solid fa-ghost"></i> POV: You open the question paper and nothing looks familiar</span>
-            </div>
-        </section>
-
-        <!-- ================= STATS BAR ================= -->
+        <!-- ━━━━━━━━━━━━━━━ STATS BAR ━━━━━━━━━━━━━━━ -->
         <section class="stats-bar content-section" id="stats-bar" data-spark-color="#fca5a5">
             <div class="stats-container container">
                 <div class="stat-item">
@@ -140,7 +151,7 @@
             </div>
         </section>
 
-        <!-- â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â SUBJECTS â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â -->
+        <!-- ━━━━━━━━━━━━━━━ SUBJECTS ━━━━━━━━━━━━━━━ -->
 
         <section class="subjects content-section" id="subjects" data-spark-color="#60a5fa">
             <div class="section-container container">
@@ -157,7 +168,7 @@
             </div>
         </section>
 
-        <!-- â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â HOW IT WORKS â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â -->
+        <!-- ━━━━━━━━━━━━━━━ HOW IT WORKS ━━━━━━━━━━━━━━━ -->
         <!-- LIVE LIBRARY RESULTS -->
         <section class="library-results content-section" id="library-results" data-spark-color="#00ffcc">
             <div class="section-container container">
@@ -212,7 +223,7 @@
             </div>
         </section>
 
-        <!-- â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â REVIEWS â”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Ââ”Â -->
+        <!-- ━━━━━━━━━━━━━━━ REVIEWS ━━━━━━━━━━━━━━━ -->
         <section class="reviews-section content-section" id="reviews" data-spark-color="#ffcc00">
             <div class="section-container container reviews-container">
                 <div class="section-header">
@@ -274,8 +285,8 @@
     <!-- UPLOAD MODAL -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal retro-modal" id="upload-modal">
-            <button class="modal-close" id="modal-close">âœ–</button>
-            <div class="modal-icon">ðŸ“¤</div>
+            <button class="modal-close" id="modal-close">✖</button>
+            <div class="modal-icon">📤</div>
             <h3>Upload Material</h3>
             <p>Select your file to upload to the system.</p>
             <form class="upload-form retro-form" id="upload-form">
@@ -308,8 +319,8 @@
     <!-- REVIEW MODAL -->
     <div class="modal-overlay" id="review-modal-overlay">
         <div class="modal retro-modal review-modal" id="review-modal">
-            <button class="modal-close" id="review-modal-close">âœ–</button>
-            <div class="modal-icon">ÃƒÂ°Ã…Â¸Ã¢â‚¬â„¢Ã‚Â¬</div>
+            <button class="modal-close" id="review-modal-close">✖</button>
+            <div class="modal-icon">Ã°Å¸â€™Â¬</div>
             <h3>Send Review</h3>
             <div class="review-terminal-shell pixel-border">
                 <div class="review-terminal-chrome">
