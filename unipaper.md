@@ -562,7 +562,7 @@ NODE_ENV=development
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/unipaper
 JWT_SECRET=replace_with_a_long_random_secret
 JWT_EXPIRES_IN=24h
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000,https://justudynotes-bgapgdajejggdrbj.eastasia-01.azurewebsites.net
 
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
@@ -1014,7 +1014,7 @@ Already filled:
 PORT=5000
 NODE_ENV=development
 API_PUBLIC_URL=http://localhost:5000
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000,https://justudynotes-bgapgdajejggdrbj.eastasia-01.azurewebsites.net
 JWT_SECRET=generated_local_secret
 JWT_EXPIRES_IN=24h
 ```
@@ -1214,7 +1214,7 @@ Stored in: backend/.env
 
 ```env
 API_PUBLIC_URL=http://localhost:5000
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000,https://justudynotes-bgapgdajejggdrbj.eastasia-01.azurewebsites.net
 VITE_API_URL=http://localhost:5000
 ```
 

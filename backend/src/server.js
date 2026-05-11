@@ -1,12 +1,13 @@
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import app from './app.js';
-import { connectDB } from './config/db.js';
 
 // Always load .env from the backend/ directory, regardless of cwd
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
+
+const { default: app } = await import('./app.js');
+const { connectDB } = await import('./config/db.js');
 
 const port = process.env.PORT || 5000;
 let server;

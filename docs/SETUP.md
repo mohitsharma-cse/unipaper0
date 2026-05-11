@@ -21,7 +21,7 @@ MONGODB_URI=your_mongodb_atlas_uri
 JWT_SECRET=long_random_secret_min_32_chars
 ADMIN_EMAIL=your_admin_email
 ADMIN_PASSWORD=your_admin_password
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000,https://justudynotes-bgapgdajejggdrbj.eastasia-01.azurewebsites.net
 ```
 
 UploadThing storage:
@@ -92,7 +92,8 @@ http://127.0.0.1:8080/admin
 
 - On Azure App Service, use Node 20+ and startup command `npm start`.
 - Set `NODE_ENV=production`.
-- Set `CLIENT_URL` and `API_PUBLIC_URL` to the Azure HTTPS URL, for example `https://your-app.azurewebsites.net`.
+- Set `CLIENT_URL` to a comma-separated list of allowed frontend origins, including local development and the Azure HTTPS URL, for example `http://localhost:3000,https://your-app.azurewebsites.net`.
+- Set `API_PUBLIC_URL` to the backend public HTTPS URL.
 - Set `COOKIE_SAME_SITE=none` and keep cookies secure over Azure HTTPS.
 - Add both UploadThing accounts as app settings: `UPLOADTHING_TOKEN` and `UPLOADTHING_2_TOKEN`, plus their labels and app IDs.
 - Use UploadThing for production file storage.

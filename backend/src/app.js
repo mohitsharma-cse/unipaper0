@@ -25,15 +25,37 @@ if (isProd) {
 }
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
-const clientOrigins = (process.env.CLIENT_URL || '')
+const normalizeOrigin = (origin) => {
+  try {
+    return new URL(origin).origin;
+  } catch {
+    return String(origin || '').trim().replace(/\/+$/, '');
+  }
+};
+
+const defaultClientOrigins = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:8080',
+  'http://localhost:8080',
+  'https://justudynotes-bgapgdajejggdrbj.eastasia-01.azurewebsites.net'
+];
+
+const configuredClientOrigins = (process.env.CLIENT_URL || '')
   .split(',')
-  .map((o) => o.trim().replace(/\/$/, '').toLowerCase())
+  .map(normalizeOrigin)
   .filter(Boolean);
 
-if (!isProd) {
-  clientOrigins.push('http://127.0.0.1:5173', 'http://localhost:5173');
-  clientOrigins.push('http://127.0.0.1:8080', 'http://localhost:8080');
-}
+const clientOrigins = [...new Set([
+  ...defaultClientOrigins.map(normalizeOrigin),
+  ...configuredClientOrigins
+])];
+
+app.locals.clientOrigins = clientOrigins;
+
+console.log(`CORS allowed origins: ${clientOrigins.join(', ')}`);
 
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
@@ -42,27 +64,11 @@ app.use(helmet({
 
 app.use(cors({
   origin(origin, callback) {
-    // 1. Allow same-origin (no origin header, e.g. from server-side or non-browser)
-    if (!origin) return callback(null, true);
-
-    const normalizedOrigin = origin.replace(/\/$/, '').toLowerCase();
-
-    // 2. Check explicit CLIENT_URL list
-    if (clientOrigins.includes(normalizedOrigin)) {
+    const requestOrigin = normalizeOrigin(origin);
+    if (!origin || clientOrigins.includes(requestOrigin)) {
       return callback(null, true);
     }
-
-    // 3. In production, also allow requests coming from the same domain
-    // (since we serve both frontend and backend on the same Azure URL)
-    if (isProd) {
-      // We don't have the host header yet in the origin callback conveniently,
-      // but we can allow common azure domain patterns if needed, 
-      // or just be more lenient if the origin matches the environment.
-      // For now, let's just make it easier for the user to debug.
-    }
-
-    console.warn(`[CORS] Blocked origin: ${origin}. Allowed: ${clientOrigins.join(', ')}`);
-    const error = new Error(`CORS blocked for origin: ${origin}. Please update CLIENT_URL in Azure.`);
+    const error = new Error(`CORS blocked for origin: ${origin}`);
     error.statusCode = 403;
     return callback(error);
   },
@@ -72,6 +78,16 @@ app.use(cors({
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.get('/api/cors-debug', (req, res) => {
+  res.json({
+    success: true,
+    requestOrigin: req.get('origin') || null,
+    clientUrlConfigured: Boolean(process.env.CLIENT_URL),
+    nodeEnv: process.env.NODE_ENV || null,
+    allowedOrigins: clientOrigins
+  });
+});
 
 if (!isProd) {
   app.use(morgan('dev'));
