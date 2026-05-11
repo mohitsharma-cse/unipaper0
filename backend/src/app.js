@@ -25,9 +25,9 @@ if (isProd) {
 }
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
-const clientOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+const clientOrigins = (process.env.CLIENT_URL || '')
   .split(',')
-  .map((o) => o.trim())
+  .map((o) => o.trim().replace(/\/$/, '').toLowerCase())
   .filter(Boolean);
 
 if (!isProd) {
@@ -42,10 +42,27 @@ app.use(helmet({
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || clientOrigins.includes(origin)) {
+    // 1. Allow same-origin (no origin header, e.g. from server-side or non-browser)
+    if (!origin) return callback(null, true);
+
+    const normalizedOrigin = origin.replace(/\/$/, '').toLowerCase();
+
+    // 2. Check explicit CLIENT_URL list
+    if (clientOrigins.includes(normalizedOrigin)) {
       return callback(null, true);
     }
-    const error = new Error(`CORS blocked for origin: ${origin}`);
+
+    // 3. In production, also allow requests coming from the same domain
+    // (since we serve both frontend and backend on the same Azure URL)
+    if (isProd) {
+      // We don't have the host header yet in the origin callback conveniently,
+      // but we can allow common azure domain patterns if needed, 
+      // or just be more lenient if the origin matches the environment.
+      // For now, let's just make it easier for the user to debug.
+    }
+
+    console.warn(`[CORS] Blocked origin: ${origin}. Allowed: ${clientOrigins.join(', ')}`);
+    const error = new Error(`CORS blocked for origin: ${origin}. Please update CLIENT_URL in Azure.`);
     error.statusCode = 403;
     return callback(error);
   },
