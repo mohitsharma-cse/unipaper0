@@ -2371,6 +2371,11 @@ body {
         position: absolute !important;
     }
 
+    /* 
+    =========================================================
+    👇 EDIT THIS PROPERTY TO CHANGE THE MOBILE SCREEN SIZE 👇
+    =========================================================
+    */
     /* ── 3. Phone screen area — user's exact coordinates ── */
     .crt-screen {
         top: 11.8% !important;
@@ -2393,6 +2398,11 @@ body {
         align-items: center !important;
         padding-top: 10% !important;
     }
+    /* 
+    =========================================================
+    👆 EDIT THIS PROPERTY TO CHANGE THE MOBILE SCREEN SIZE 👆
+    =========================================================
+    */
 
     /* ── 4. Hide decorative canvas & scanlines (too heavy for small screen) ── */
     .crt-screen .shapegrid-canvas,
