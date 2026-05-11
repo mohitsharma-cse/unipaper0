@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboard?.classList.remove('admin-hidden');
         logoutButton?.classList.remove('admin-hidden');
         applyPermissionVisibility();
+        setStatus('', ''); // Clear the checking session message
     }
 
     function showLoggedOut() {

@@ -18,6 +18,9 @@ body {
     overflow-y: auto;
 }
 
+.main-content {
+    padding-top: 60px; /* Offset for the fixed navbar */
+}
 /* â•â•â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â•â•â• */
 .navbar {
     display: flex;
