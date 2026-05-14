@@ -19,38 +19,21 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '22.x'
-          cache: 'npm'
 
-      - name: Install, verify, and trim dependencies
+      - name: npm install, build, and test
         run: |
-          npm ci
-          npm run build
+          npm install
+          npm run build --if-present
           npm run test --if-present
-          npm prune --omit=dev
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: |
-            admin.html
-            admin.js
-            backend/package.json
-            backend/node_modules/**
-            backend/src/**
-            bg.png
-            index.html
-            mobile-bg.png
-            node_modules/**
-            package-lock.json
-            package.json
-            script.js
-            scripts/**
-            style.css
-            web.config
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6DF6B960465C463EB0F079B297210854 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9EE65493A40D442DB534993880C97D4D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F71840B31344453CA0FC1AA958F4741A }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A578C19142694829AB4869CA78018EDE }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_845D957917934C56A229780AB98656D8 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4EE70604CAB64FF391D0B6769CA15995 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
