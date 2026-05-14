@@ -1,0 +1,31 @@
+{
+  "name": "unipaper-static-integrated",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Unipaper static design integrated with the Express/MongoDB backend",
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "build": "node scripts/verify-production.mjs",
+    "dev:backend": "npm run dev --workspace backend",
+    "start": "node backend/src/server.js",
+    "start:backend": "npm run start --workspace backend",
+    "seed:admin": "npm run seed --workspace backend",
+    "seed:folders": "npm run seed:folders --workspace backend",
+    "doctor": "npm run doctor --workspace backend",
+    "serve:site": "node site-server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "@uploadthing/shared": {
+      "effect": "3.21.2"
+    },
+    "uploadthing": {
+      "effect": "3.21.2"
+    }
+  }
+}

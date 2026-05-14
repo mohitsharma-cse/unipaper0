@@ -1,0 +1,82 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - justudynotes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Install, verify, and trim dependencies
+        run: |
+          npm ci
+          npm run build
+          npm run test --if-present
+          npm prune --omit=dev
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: |
+            admin.html
+            admin.js
+            backend/package.json
+            backend/node_modules/**
+            backend/src/**
+            bg.png
+            index.html
+            mobile-bg.png
+            node_modules/**
+            package-lock.json
+            package.json
+            script.js
+            scripts/**
+            style.css
+            web.config
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: node-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6DF6B960465C463EB0F079B297210854 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9EE65493A40D442DB534993880C97D4D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F71840B31344453CA0FC1AA958F4741A }}
+
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'justudynotes'
+          slot-name: 'Production'
+          package: .
+          

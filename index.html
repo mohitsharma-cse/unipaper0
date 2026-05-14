@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unipaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+    <!-- MAIN APP NAVBAR -->
+    <nav class="navbar" data-spark-color="#ffffff">
+        <div class="nav-left">
+            <a href="#" class="logo">
+                <span class="logo-icon-box">U</span>
+                <span class="logo-text">Unipaper</span>
+            </a>
+            <div class="pill-nav-items desktop-only">
+                <ul class="pill-list">
+                    <li>
+                        <a class="pill" href="#library-results">
+                            <span class="hover-circle"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Library <i class="fa-solid fa-book"></i></span>
+                                <span class="pill-label-hover" aria-hidden="true">Library <i class="fa-solid fa-book"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="pill" href="#subjects">
+                            <span class="hover-circle"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Courses <i class="fa-solid fa-graduation-cap"></i></span>
+                                <span class="pill-label-hover" aria-hidden="true">Courses <i class="fa-solid fa-graduation-cap"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="pill" href="#how-it-works">
+                            <span class="hover-circle"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About <i class="fa-solid fa-circle-info"></i></span>
+                                <span class="pill-label-hover" aria-hidden="true">About <i class="fa-solid fa-circle-info"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="pill" href="/admin">
+                            <span class="hover-circle"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Admin Panel <i class="fa-solid fa-lock"></i></span>
+                                <span class="pill-label-hover" aria-hidden="true">Admin Panel <i class="fa-solid fa-lock"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="icon-btn"><i class="fa-solid fa-moon"></i></button>
+            <div class="avatar">
+                <img src="https://ui-avatars.com/api/?name=User&background=333&color=fff" alt="User Profile">
+            </div>
+            <a class="join-btn" href="/admin">Admin</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- HERO SECTION: CRT SCENE -->
+        <section class="hero-section" id="hero" data-spark-color="#00ffcc">
+            <div class="desk-container">
+                <img src="bg.png" alt="Retro Desk Background" class="bg-layer desktop-bg" id="bg-img">
+                <img src="mobile-bg.png" alt="Mobile Study Hub" class="bg-layer mobile-bg">
+
+                <div class="crt-screen" id="crt-overlay">
+                    <canvas id="shapegrid-canvas" class="shapegrid-canvas"></canvas>
+                    <div class="scanlines"></div>
+                    <div class="crt-flicker"></div>
+                               <div class="monitor-content">
+                        <div class="monitor-greeting"><span class="emoji"><i class="fa-solid fa-ghost"></i></span> WELCOME TO YOUR STUDY HUB <span class="emoji"><i class="fa-solid fa-ghost"></i></span></div>
+                        <h1 class="main-title"><span class="stars"><i class="fa-solid fa-star"></i></span> Learn. Explore. Excel. <span class="stars"><i class="fa-solid fa-star"></i></span></h1>
+                        
+                        <p class="subtitle">Find the best resources, notes, and guides<br>to <span class="highlight-text">level up your knowledge</span>.</p>
+                        
+                        <div class="search-box">
+                            <div class="search-input-wrapper">
+                                <span class="search-icon-left"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <input type="text" placeholder="Search for subjects, courses, or resources..." class="pixel-input" id="hero-search-input" autocomplete="off">
+                                <button class="search-action-btn" id="search-btn">
+                                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> SEARCH
+                                </button>
+                            </div>
+                            
+                            <div class="search-suggestions" id="search-suggestions" style="display:none;">
+                                <div class="suggestion-header">
+                                    <span class="suggestion-icon-s"><i class="fa-solid fa-magnifying-glass"></i></span> TRY SEARCHING FOR
+                                </div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-book-open"></i></span> Introduction to Computer Science</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-code"></i></span> Data Structures and Algorithms</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-atom"></i></span> Physics - Mechanics</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-chart-line"></i></span> Calculus - Differential Equations</div>
+                                <div class="suggestion-item"><span class="sugg-icon"><i class="fa-solid fa-laptop-code"></i></span> Web Development Basics</div>
+                                <div class="suggestion-footer">
+                                    <span class="sugg-icon-tip"><i class="fa-solid fa-lightbulb"></i></span> Tip: Use keywords like <span class="tip-highlight">"notes"</span>, <span class="tip-highlight">"guide"</span>, or <span class="tip-highlight">"course"</span><br>for better results.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tags-container">
+                            <button class="monitor-tag active"><span class="tag-icon"><i class="fa-solid fa-layer-group"></i></span> All</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-desktop"></i></span> Computer Science</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-calculator"></i></span> Mathematics</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-atom"></i></span> Physics</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-book"></i></span> Literature</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-gear"></i></span> Engineering</button>
+                            <button class="monitor-tag"><span class="tag-icon"><i class="fa-solid fa-ellipsis"></i></span> More</button>
+                        </div>
+
+                        <div class="monitor-footer-text">
+                            <i class="fa-solid fa-rocket"></i> Your next <span class="highlight-text">breakthrough</span> starts here.
+                        </div>
+                    </div>          </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS BAR -->
+        <section class="stats-bar content-section" id="stats-bar" data-spark-color="#fca5a5">
+            <div class="stats-container container">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="12400">0</span>
+                    <span class="stat-label">Papers<br>Uploaded</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="340">0</span>
+                    <span class="stat-label">Subjects<br>Covered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="8900">0</span>
+                    <span class="stat-label">Active<br>Students</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="99">0</span>
+                    <span class="stat-label">% Free<br>Access</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUBJECTS -->
+
+        <section class="subjects content-section" id="subjects" data-spark-color="#60a5fa">
+            <div class="section-container container">
+                <div class="section-header">
+                    <h2 class="section-heading">Browse Folders</h2>
+                    <p class="section-desc">Explore the most searched topics by students like you</p>
+                </div>
+                <div class="subjects-grid" id="subjects-grid">
+                    <!-- Cards injected by JS -->
+                </div>
+                <button class="btn btn-black" id="browse-all-btn" style="margin: 2.5rem auto 0; display: flex;">
+                    BROWSE ALL <span><i class="fa-solid fa-arrow-right"></i></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <!-- LIVE LIBRARY RESULTS -->
+        <section class="library-results content-section" id="library-results" data-spark-color="#00ffcc">
+            <div class="section-container container">
+                <div class="section-header">
+                    <h2 class="section-heading">Browse All Files</h2>
+                    <p class="section-desc" id="library-status">Connected to the Unipaper database. Search or browse to load notes, assignments, PYQs, and syllabus PDFs.</p>
+                </div>
+
+                <div class="library-toolbar">
+                    <div class="library-filter-row" id="library-category-filters" aria-label="Material type filters">
+                        <button class="library-filter is-active" type="button" data-category="">All</button>
+                        <button class="library-filter" type="button" data-category="Notes">Notes</button>
+                        <button class="library-filter" type="button" data-category="Assignments">Assignments</button>
+                        <button class="library-filter" type="button" data-category="PYQ">PYQ</button>
+                        <button class="library-filter" type="button" data-category="Syllabus">Syllabus</button>
+                    </div>
+                    <button class="btn btn-yellow" id="library-refresh-btn" type="button">REFRESH <span>R</span></button>
+                </div>
+
+                <div class="library-grid" id="library-grid">
+                    <div class="library-empty pixel-border">No files loaded yet. Press Browse All or search from the CRT screen.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works content-section" id="how-it-works" data-spark-color="#34d399">
+            <div class="section-container container">
+                <div class="section-header">
+                    <h2 class="section-heading">How It Works</h2>
+                    <p class="section-desc">Three steps to find what you need</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h3>Search Subject</h3>
+                        <p>Type the subject name or code in the search bar instantly.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <div class="step-icon"><i class="fa-solid fa-folder-tree"></i></div>
+                        <h3>Browse & Filter</h3>
+                        <p>Filter by year and type to get exactly what you need.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <div class="step-icon"><i class="fa-solid fa-download"></i></div>
+                        <h3>Download Free</h3>
+                        <p>Access and download all materials instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section class="reviews-section content-section" id="reviews" data-spark-color="#ffcc00">
+            <div class="section-container container reviews-container">
+                <div class="section-header">
+                    <h2 class="section-heading">Student Reviews</h2>
+                    <p class="section-desc">Live moving feed of campus intelligence.</p>
+                </div>
+
+                <div class="reviews-stage" id="reviews-stage" aria-live="polite">
+                    <div class="reviews-track" id="reviews-track"></div>
+                </div>
+
+                <div class="reviews-controls">
+                    <button class="review-arrow review-arrow-prev btn btn-black" id="reviews-prev" type="button" aria-label="Previous">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="review-arrow review-arrow-next btn btn-black" id="reviews-next" type="button" aria-label="Next">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="reviews-actions" style="display:flex; justify-content:center; margin-top:20px; flex-direction:column; align-items:center; gap: 15px;">
+                    <button class="btn btn-yellow" id="post-review-btn" type="button">
+                        POST A REVIEW <span><i class="fa-solid fa-arrow-right"></i></span>
+                    </button>
+                    <p class="reviews-note" id="reviews-status" style="color: #a1a1aa; font-family: 'Inter', sans-serif; font-size: 14px;">Every submitted review is sent to admin first. Approved reviews appear in this moving section.</p>
+                </div>
+
+                <section class="review-reactions-panel" id="review-reactions-panel" >
+                    <div class="review-reactions-head">
+                        <div>
+                            <h3>Tap A Reaction</h3>
+                            <p>Press an emoji and watch the count grow under it.</p>
+                        </div>
+                        <div class="review-reactions-metrics">
+                            <div class="review-view-pill">
+                                <span class="review-view-number" id="review-view-count">0</span>
+                                <span>views</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-reactions-grid" id="review-reactions-grid" aria-label="Review reactions"></div>
+                </section>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM APP FOOTER -->
+    <footer class="footer content-section" data-spark-color="#ff00ff">
+        <div class="footer-center">
+            <span class="logo-icon-box small">U</span>
+        </div>
+        <div class="footer-right">
+            <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">Support</a> | <a href="/admin">Admin</a>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- UPLOAD MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal retro-modal" id="upload-modal">
+            <button class="modal-close" id="modal-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-upload"></i></div>
+            <h3>Upload Material</h3>
+            <p>Select your file to upload to the system.</p>
+            <form class="upload-form retro-form" id="upload-form">
+                <input type="text" placeholder="Subject Name" class="form-input pixel-input" id="form-subject" required />
+                <select class="form-input pixel-input" id="form-type">
+                    <option value="">Select Type</option>
+                    <option value="paper">Previous Year Paper</option>
+                    <option value="notes">Notes</option>
+                    <option value="assignment">Assignment</option>
+                </select>
+                <input type="text" placeholder="Year (e.g. 2023)" class="form-input pixel-input" id="form-year" />
+                <label class="file-upload-label pixel-border" for="form-file">
+                    <span data-upload-file-text>CLICK TO UPLOAD</span>
+                    <small>PDF / DOCX</small>
+                </label>
+                <input type="file" id="form-file" accept=".pdf,.doc,.docx" hidden />
+                <button type="submit" class="btn btn-yellow">
+                    SUBMIT <span><i class="fa-solid fa-arrow-right"></i></span>
+                </button>
+            </form>
+            <div class="upload-modal-success" id="upload-success-state" hidden>
+                <h3>UPLOAD ACCEPTED!</h3>
+                <p>Material added to database.</p>
+                <button class="btn btn-black" id="upload-success-close" type="button">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- REVIEW MODAL -->
+    <div class="modal-overlay" id="review-modal-overlay">
+        <div class="modal retro-modal review-modal" id="review-modal">
+            <button class="modal-close" id="review-modal-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-comment-dots"></i></div>
+            <h3>Send Review</h3>
+            <div class="review-terminal-shell pixel-border">
+                <div class="review-terminal-chrome">
+                    SYS.REVIEW.EXE
+                </div>
+                <form class="review-terminal-window" id="review-form">
+                    <div class="review-terminal-log" id="review-terminal-log"></div>
+                    <div class="review-terminal-entry" id="review-terminal-entry">
+                        <span class="review-terminal-arrow">&gt;</span>
+                        <input
+                            type="text"
+                            class="review-terminal-input VT323-font"
+                            id="review-terminal-input"
+                            maxlength="220"
+                            autocomplete="off"
+                            spellcheck="false"
+                        />
+                    </div>
+                    <div class="review-terminal-actions" id="review-terminal-actions" hidden>
+                        <button class="btn btn-black" id="review-reset-btn" type="button">RESET</button>
+                        <button class="btn btn-yellow" id="review-done-btn" type="submit">DONE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+

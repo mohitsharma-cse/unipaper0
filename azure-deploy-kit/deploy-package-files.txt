@@ -1,0 +1,15 @@
+admin.html
+admin.js
+backend/package.json
+backend/node_modules/**
+backend/src/**
+bg.png
+index.html
+mobile-bg.png
+node_modules/**
+package-lock.json
+package.json
+script.js
+scripts/**
+style.css
+web.config
